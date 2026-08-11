@@ -324,22 +324,73 @@
     text-decoration: underline;
   }
 </style>
+<!-- ======================================================== -->
+<!-- BOTÓN DE VOZ DIRECTO - SECRETARIA AURION                 -->
+<!-- ======================================================== -->
 
-<!-- Botón Flotante Visible -->
-<div id="aurion-secretaria-btn">
-  <img id="aurion-secretaria-img" src="URL_FOTO_EJECUTIVA" alt="Secretaria Aurion" onclick="abrirAtencionAurion()">
-  <div class="aurion-btn-text">
-    <span class="title" onclick="abrirAtencionAurion()">Secretaria Aurion</span>
-    <span class="action" onclick="abrirAtencionAurion()">🎙️ Hablar con voz en menos de 1 min</span>
-    <a class="whatsapp-link" href="https://wa.me/56927541231?text=Hola%20Sol%2C%20quiero%20saber%20mas%20sobre%20AURION" target="_blank" rel="noopener">
-      💬 ¿Consultas directas? WhatsApp
-    </a>
-  </div>
-</div>
+<style>
+  #aurion-voz-avatar {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 999999;
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    border: 3px solid #c9a84c;
+    box-shadow: 0 4px 20px rgba(201, 168, 76, 0.5);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: #0a0a0a;
+  }
+
+  #aurion-voz-avatar:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 25px rgba(201, 168, 76, 0.8);
+  }
+
+  #aurion-voz-avatar.hablando {
+    animation: pulsoOro 1.5s infinite;
+  }
+
+  @keyframes pulsoOro {
+    0% { box-shadow: 0 0 0 0 rgba(201, 168, 76, 0.8); }
+    70% { box-shadow: 0 0 0 15px rgba(201, 168, 76, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(201, 168, 76, 0); }
+  }
+</style>
+
+<!-- Foto Flotante de la Secretaria -->
+<img id="aurion-voz-avatar" 
+     src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663295304532/SXAbPHcoYQWtVFRu.jpg" 
+     alt="Secretaria Aurion" 
+     title="Toca para hablar con la Secretaria" 
+     onclick="hablarSecretariaAurion()">
 
 <script>
-  function abrirAtencionAurion() {
-    window.location.href = "https://t.me/Solsanchez_bot";
+  function hablarSecretariaAurion() {
+    var img = document.getElementById('aurion-voz-avatar');
+    img.classList.add('hablando');
+
+    // Saludo de voz directo desde la web
+    var textoSaludo = "¡Hola! Buenas tardes, bienvenida a Aurion. Soy la Secretaria Ejecutiva. Te ayudo a elegir el asistente de Inteligencia Artificial ideal en menos de 1 minuto. ¿Buscas ayuda para tu empresa o deseas conocer nuestras 12 personalidades de Leo?";
+
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel(); // Detener audios anteriores
+      var mensaje = new SpeechSynthesisUtterance(textoSaludo);
+      mensaje.lang = 'es-MX'; // Español neutro
+      mensaje.rate = 0.95;    // Velocidad pausada y dulce
+      mensaje.pitch = 1.0;
+
+      mensaje.onend = function() {
+        img.classList.remove('hablando');
+      };
+
+      window.speechSynthesis.speak(mensaje);
+    } else {
+      alert(textoSaludo);
+      img.classList.remove('hablando');
+    }
   }
 </script>
 </body>
