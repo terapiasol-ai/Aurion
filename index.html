@@ -68,9 +68,9 @@
         footer { background: #050505; padding: 40px 20px; text-align: center; border-top: 1px solid #1a1a1a; }
         footer p { color: #605040; font-size: 0.9em; }
         footer a { color: #c9a84c; text-decoration: none; }
-        
-        /* ESTILOS DE LA VENTANA INTERACTIVA DE LA SECRETARIA */
-        #aurion-widget-btn {
+
+        /* ESTILO DEL BOTÓN FLOTANTE CON FOTO DE LA SECRETARIA */
+        #secretaria-wa-badge {
             position: fixed;
             bottom: 25px;
             right: 25px;
@@ -79,140 +79,49 @@
             align-items: center;
             gap: 12px;
             background: linear-gradient(135deg, #1a1200 0%, #2a2010 100%);
-            border: 2px solid #c9a84c;
+            border: 2px solid #25D366;
             color: #e0d5c0;
             padding: 8px 20px 8px 8px;
             border-radius: 50px;
-            box-shadow: 0 4px 20px rgba(201, 168, 76, 0.4);
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
             cursor: pointer;
+            text-decoration: none;
             font-family: 'Segoe UI', Arial, sans-serif;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        #aurion-widget-btn:hover {
+        #secretaria-wa-badge:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 25px rgba(201, 168, 76, 0.6);
+            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6);
         }
 
-        #aurion-widget-btn img {
-            width: 48px;
-            height: 48px;
+        #secretaria-wa-badge img {
+            width: 52px;
+            height: 52px;
             border-radius: 50%;
             object-fit: cover;
-            border: 2px solid #c9a84c;
+            border: 2px solid #25D366;
         }
 
-        #aurion-chat-card {
-            display: none;
-            position: fixed;
-            bottom: 85px;
-            right: 25px;
-            width: 350px;
-            max-width: 90vw;
-            height: 480px;
-            background: #111111;
-            border: 2px solid #c9a84c;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-            z-index: 999999;
-            flex-direction: column;
-            overflow: hidden;
-            font-family: 'Segoe UI', Arial, sans-serif;
-        }
-
-        .aurion-card-header {
-            background: linear-gradient(135deg, #1a1200 0%, #2a2010 100%);
-            border-bottom: 1px solid #c9a84c;
-            padding: 12px 15px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .aurion-card-profile {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .aurion-card-profile img {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            border: 2px solid #c9a84c;
-            object-fit: cover;
-        }
-
-        .aurion-card-profile .info h4 {
-            color: #c9a84c;
-            font-size: 14px;
-            margin: 0;
-        }
-
-        .aurion-card-profile .info span {
-            color: #25D366;
-            font-size: 11px;
-        }
-
-        .aurion-card-close {
-            background: none;
-            border: none;
-            color: #c9a84c;
-            font-size: 22px;
-            cursor: pointer;
-        }
-
-        .aurion-card-body {
-            flex: 1;
-            padding: 15px;
-            overflow-y: auto;
+        .secretaria-btn-text {
             display: flex;
             flex-direction: column;
-            gap: 10px;
-            background: #0a0a0a;
         }
 
-        .aurion-msg-bot {
-            background: #1f1a0e;
-            border: 1px solid #3a2e10;
-            color: #e0d5c0;
-            padding: 10px 14px;
-            border-radius: 12px 12px 12px 0;
-            font-size: 13px;
-            line-height: 1.4;
-            max-width: 85%;
-        }
-
-        .aurion-card-footer {
-            padding: 10px;
-            background: #111111;
-            border-top: 1px solid #2a2010;
-            display: flex;
-            gap: 8px;
-        }
-
-        .aurion-card-footer input {
-            flex: 1;
-            background: #0a0a0a;
-            border: 1px solid #3a2e10;
-            color: #ffffff;
-            padding: 8px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            outline: none;
-        }
-
-        .aurion-card-footer button {
-            background: #c9a84c;
-            border: none;
-            color: #0a0a0a;
+        .secretaria-btn-text .title {
             font-weight: bold;
-            padding: 8px 15px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 12px;
+            font-size: 14px;
+            color: #c9a84c;
+            line-height: 1.2;
         }
 
+        .secretaria-btn-text .action {
+            font-size: 12px;
+            font-weight: bold;
+            color: #25D366;
+            margin-top: 2px;
+        }
+        
         @media (max-width: 768px) {
             .hero h1 { font-size: 2em; }
             .logo-hero { width: 150px; height: 150px; }
@@ -403,86 +312,15 @@
     <p>AURION &copy; 2026 | Creado por Sol Sánchez | <a href="https://t.me/Solsanchez_bot">@Solsanchez_bot</a></p>
     <p style="margin-top: 10px;">IA a tu Medida - Plataforma de Despertar</p>
 </footer>
-<script>
-  // SISTEMA DE VOZ A VOZ (HABLAR Y ESCUCHAR SIN ESCRIBIR)
-  var recon = null;
 
-  if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
-    var SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
-    recon = new SpeechRec();
-    recon.lang = 'es-MX';
-    recon.continuous = false;
-    recon.interimResults = false;
-
-    recon.onresult = function(event) {
-      var textoEscuchado = event.results[0][0].transcript;
-      responderVerbalmente(textoEscuchado);
-    };
-
-    recon.onerror = function() {
-      hablarTexto("Disculpa, no logré escucharte bien. Por favor toca mi foto y háblame de nuevo.");
-    };
-  }
-
-  function toggleAurionChat() {
-    // Al tocar la foto de la Secretaria, inicia saludando en voz alta
-    var saludo = "¡Hola! Buenas tardes, bienvenida a Aurion. Te escucho, ¿en qué te puedo colaborar hoy?";
-    hablarTexto(saludo, function() {
-      escucharUsuario();
-    });
-  }
-
-  function escucharUsuario() {
-    if (recon) {
-      try {
-        recon.start();
-      } catch(e) {}
-    }
-  }
-
-  function hablarTexto(texto, callbackAlTerminar) {
-    if ('speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
-      var ut = new SpeechSynthesisUtterance(texto);
-      ut.lang = 'es-MX';
-      ut.rate = 0.95;
-      ut.pitch = 1.0;
-
-      ut.onend = function() {
-        if (callbackAlTerminar) callbackAlTerminar();
-      };
-
-      window.speechSynthesis.speak(ut);
-    }
-  }
-
-  function responderVerbalmente(pregunta) {
-    var p = pregunta.toLowerCase();
-    var respuestaHablada = "";
-
-    if (p.includes('profesor') || p.includes('malla') || p.includes('escolar')) {
-      respuestaHablada = "El Profesor de Escolaridad de LEO es un tutor de élite secular que enseña la malla curricular de cada país paso a paso, con pedagogía visual y neurociencia sin violencia. Además, para acceder a la Beca completa sólo debes cumplir 5 pasos simples en nuestro canal de YouTube: ver el video, darle me gusta, compartir, suscribirte y comentar.";
-    } 
-    else if (p.includes('dato') || p.includes('detalle') || p.includes('informacion') || p.includes('saber')) {
-      respuestaHablada = "Te cuento los detalles: el Profesor adapta sus explicaciones a la edad del alumno desde niños pequeños hasta adolescentes, guarda su avance y no usa memorización mecánica. La Beca de YouTube cubre el acceso completo al Profesor.";
-    }
-    else if (p.includes('beca') || p.includes('youtube')) {
-      respuestaHablada = "Para obtener la Beca del Profesor de Escolaridad debes cumplir 5 pasos en YouTube: Ver el video, darle Me Gusta, compartirlo, suscribirte al canal y dejar un comentario. Luego nos envías las capturas para validar tu acceso de inmediato.";
-    }
-    else if (p.includes('valentina') || p.includes('optica')) {
-      respuestaHablada = "Valentina 2.0 es nuestra secretaria virtual inteligente para ópticas. Atiende de Lunes a Viernes, agenda citas automáticamente y destaca los cristales de stock listos en 15 minutos con tecnología alemana.";
-    }
-    else if (p.includes('tecno') || p.includes('ia') || p.includes('tecnologia')) {
-      respuestaHablada = "El Profesor de Tecnología e Inteligencia Artificial de LEO enseña a niños y jóvenes a dominar la tecnología y crear proyectos reales para tener su propia autosuficiencia económica desde pequeños.";
-    }
-    else {
-      respuestaHablada = "En Aurion creamos asistentes de Inteligencia Artificial con alma. Te puedo dar información hablada sobre nuestro Ecosistema LEO con sus 12 personalidades, la Beca del Profesor de Escolaridad o diseñar un asistente a medida para tu negocio. ¿De qué tema te gustaría hablar?";
-    }
-
-    // La Secretaria RESPONDE HABLANDO EN VOZ ALTA por los parlantes
-    hablarTexto(respuestaHablada);
-  }
-</script>
+<!-- BOTÓN FLOTANTE CON LA FOTO DE LA SECRETARIA QUE ABRE WHATSAPP BUSINESS -->
+<a id="secretaria-wa-badge" href="https://wa.me/56927541231?text=Hola%20Sol%2C%20quiero%20informacion%20sobre%20AURION%20y%20el%20Profesor%20de%20Escolaridad" target="_blank" rel="noopener">
+  <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663295304532/SXAbPHcoYQWtVFRu.jpg" alt="Secretaria Ejecutiva Aurion">
+  <div class="secretaria-btn-text">
+    <span class="title">Secretaria Aurion</span>
+    <span class="action">💬 Hablar por WhatsApp</span>
+  </div>
+</a>
 
 </body>
-    </html>
+</html>
