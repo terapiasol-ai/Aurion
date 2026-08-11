@@ -403,77 +403,84 @@
     <p>AURION &copy; 2026 | Creado por Sol Sánchez | <a href="https://t.me/Solsanchez_bot">@Solsanchez_bot</a></p>
     <p style="margin-top: 10px;">IA a tu Medida - Plataforma de Despertar</p>
 </footer>
-
-<!-- BOTÓN Y VENTANA INTERACTIVA EN PANTALLA -->
-<div id="aurion-widget-btn" onclick="toggleAurionChat()">
-  <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663295304532/SXAbPHcoYQWtVFRu.jpg" alt="Secretaria Aurion">
-  <div style="display:flex; flex-direction:column;">
-    <span style="font-weight:bold; color:#c9a84c; font-size:14px;">Secretaria Aurion</span>
-    <span style="font-size:11px; color:#e0d5c0;">💬 Atendiendo en vivo</span>
-  </div>
-</div>
-
-<div id="aurion-chat-card">
-  <div class="aurion-card-header">
-    <div class="aurion-card-profile">
-      <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663295304532/SXAbPHcoYQWtVFRu.jpg" alt="Secretaria Aurion">
-      <div class="info">
-        <h4>Secretaria Ejecutiva Aurion</h4>
-        <span>● En línea | Atención IA 24/7</span>
-      </div>
-    </div>
-    <button class="aurion-card-close" onclick="toggleAurionChat()">&times;</button>
-  </div>
-
-  <div class="aurion-card-body" id="aurion-msg-box">
-    <div class="aurion-msg-bot">
-      ¡Hola, buenas tardes! Bienvenid@ a Aurion. Soy la Secretaria Ejecutiva. Te ayudo a encontrar el asistente de Inteligencia Artificial ideal para tu negocio o familia en menos de 1 minuto. ¿En qué te puedo colaborar hoy?
-    </div>
-  </div>
-
-  <div class="aurion-card-footer">
-    <input type="text" id="aurion-user-input" placeholder="Escribe tu consulta aquí..." onkeypress="if(event.key==='Enter') enviarMensajeAurion()">
-    <button onclick="enviarMensajeAurion()">Enviar</button>
-  </div>
-</div>
-
 <script>
+  // SISTEMA DE VOZ A VOZ (HABLAR Y ESCUCHAR SIN ESCRIBIR)
+  var recon = null;
+
+  if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+    var SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+    recon = new SpeechRec();
+    recon.lang = 'es-MX';
+    recon.continuous = false;
+    recon.interimResults = false;
+
+    recon.onresult = function(event) {
+      var textoEscuchado = event.results[0][0].transcript;
+      responderVerbalmente(textoEscuchado);
+    };
+
+    recon.onerror = function() {
+      hablarTexto("Disculpa, no logré escucharte bien. Por favor toca mi foto y háblame de nuevo.");
+    };
+  }
+
   function toggleAurionChat() {
-    var card = document.getElementById('aurion-chat-card');
-    if (card.style.display === 'flex') {
-      card.style.display = 'none';
-    } else {
-      card.style.display = 'flex';
+    // Al tocar la foto de la Secretaria, inicia saludando en voz alta
+    var saludo = "¡Hola! Buenas tardes, bienvenida a Aurion. Te escucho, ¿en qué te puedo colaborar hoy?";
+    hablarTexto(saludo, function() {
+      escucharUsuario();
+    });
+  }
+
+  function escucharUsuario() {
+    if (recon) {
+      try {
+        recon.start();
+      } catch(e) {}
     }
   }
 
-  function enviarMensajeAurion() {
-    var input = document.getElementById('aurion-user-input');
-    var msgBox = document.getElementById('aurion-msg-box');
-    var txt = input.value.trim();
-    if (!txt) return;
+  function hablarTexto(texto, callbackAlTerminar) {
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+      var ut = new SpeechSynthesisUtterance(texto);
+      ut.lang = 'es-MX';
+      ut.rate = 0.95;
+      ut.pitch = 1.0;
 
-    var userDiv = document.createElement('div');
-    userDiv.style.alignSelf = 'flex-end';
-    userDiv.style.background = '#c9a84c';
-    userDiv.style.color = '#0a0a0a';
-    userDiv.style.padding = '8px 12px';
-    userDiv.style.borderRadius = '12px 12px 0 12px';
-    userDiv.style.fontSize = '13px';
-    userDiv.style.maxWidth = '85%';
-    userDiv.innerText = txt;
-    msgBox.appendChild(userDiv);
+      ut.onend = function() {
+        if (callbackAlTerminar) callbackAlTerminar();
+      };
 
-    input.value = '';
-    msgBox.scrollTop = msgBox.scrollHeight;
+      window.speechSynthesis.speak(ut);
+    }
+  }
 
-    setTimeout(function() {
-      var botDiv = document.createElement('div');
-      botDiv.className = 'aurion-msg-bot';
-      botDiv.innerText = "¡Excelente! Para atenderte de forma personalizada y enviarte los detalles, te conecto directamente con nuestra Directora Sol Sánchez o puedes probar la app de inmediato.";
-      msgBox.appendChild(botDiv);
-      msgBox.scrollTop = msgBox.scrollHeight;
-    }, 1000);
+  function responderVerbalmente(pregunta) {
+    var p = pregunta.toLowerCase();
+    var respuestaHablada = "";
+
+    if (p.includes('profesor') || p.includes('malla') || p.includes('escolar')) {
+      respuestaHablada = "El Profesor de Escolaridad de LEO es un tutor de élite secular que enseña la malla curricular de cada país paso a paso, con pedagogía visual y neurociencia sin violencia. Además, para acceder a la Beca completa sólo debes cumplir 5 pasos simples en nuestro canal de YouTube: ver el video, darle me gusta, compartir, suscribirte y comentar.";
+    } 
+    else if (p.includes('dato') || p.includes('detalle') || p.includes('informacion') || p.includes('saber')) {
+      respuestaHablada = "Te cuento los detalles: el Profesor adapta sus explicaciones a la edad del alumno desde niños pequeños hasta adolescentes, guarda su avance y no usa memorización mecánica. La Beca de YouTube cubre el acceso completo al Profesor.";
+    }
+    else if (p.includes('beca') || p.includes('youtube')) {
+      respuestaHablada = "Para obtener la Beca del Profesor de Escolaridad debes cumplir 5 pasos en YouTube: Ver el video, darle Me Gusta, compartirlo, suscribirte al canal y dejar un comentario. Luego nos envías las capturas para validar tu acceso de inmediato.";
+    }
+    else if (p.includes('valentina') || p.includes('optica')) {
+      respuestaHablada = "Valentina 2.0 es nuestra secretaria virtual inteligente para ópticas. Atiende de Lunes a Viernes, agenda citas automáticamente y destaca los cristales de stock listos en 15 minutos con tecnología alemana.";
+    }
+    else if (p.includes('tecno') || p.includes('ia') || p.includes('tecnologia')) {
+      respuestaHablada = "El Profesor de Tecnología e Inteligencia Artificial de LEO enseña a niños y jóvenes a dominar la tecnología y crear proyectos reales para tener su propia autosuficiencia económica desde pequeños.";
+    }
+    else {
+      respuestaHablada = "En Aurion creamos asistentes de Inteligencia Artificial con alma. Te puedo dar información hablada sobre nuestro Ecosistema LEO con sus 12 personalidades, la Beca del Profesor de Escolaridad o diseñar un asistente a medida para tu negocio. ¿De qué tema te gustaría hablar?";
+    }
+
+    // La Secretaria RESPONDE HABLANDO EN VOZ ALTA por los parlantes
+    hablarTexto(respuestaHablada);
   }
 </script>
 
