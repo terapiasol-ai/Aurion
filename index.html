@@ -540,4 +540,101 @@
             recognition.onresult = function(event) {
                 let texto = "";
                 for (let i = event.resultIndex; i < event.results.length; i++) {
-                    texto += event.res
+                    texto += event.results[i][0].transcript;
+                }
+                document.getElementById("solUserInput").value = texto;
+            };
+
+            recognition.onerror = function() { detenerMic(); };
+            recognition.onend = function() {
+                detenerMic();
+                const inp = document.getElementById("solUserInput");
+                if (inp.value.trim().length > 0) {
+                    setTimeout(() => { enviarMensajeWeb(); }, 400);
+                }
+            };
+        }
+
+        function toggleDictadoVoz() {
+            if (!recognition) return;
+            if (escuchando) recognition.stop();
+            else recognition.start();
+        }
+
+        function detenerMic() {
+            escuchando = false;
+            const btn = document.getElementById("solMicBtn");
+            if (btn) {
+                btn.classList.remove("recording");
+                btn.innerText = "🎙️";
+            }
+        }
+
+        function toggleSolChat() {
+            const chat = document.getElementById("sol-chat-window");
+            chat.style.display = (chat.style.display === "flex") ? "none" : "flex";
+        }
+
+        function toggleVoiceAudio() {
+            vozActiva = !vozActiva;
+            document.getElementById("voiceToggle").innerText = vozActiva ? "🔊" : "🔇";
+        }
+
+        function hablarRespuesta(texto) {
+            if (!vozActiva || !('speechSynthesis' in window)) return;
+            window.speechSynthesis.cancel();
+            let limpio = texto.replace(/https?:\/\/\S+/g, "").replace(/[*#_~`]/g, "");
+            const utter = new SpeechSynthesisUtterance(limpio);
+            utter.lang = "es-CL";
+            window.speechSynthesis.speak(utter);
+        }
+
+        function handleKey(e) { if (e.key === "Enter") enviarMensajeWeb(); }
+
+        async function enviarMensajeWeb() {
+            const input = document.getElementById("solUserInput");
+            const mensaje = input.value.trim();
+            if (!mensaje) return;
+
+            const chatMessages = document.getElementById("chatMessages");
+            const userBubble = document.createElement("div");
+            userBubble.className = "msg-user";
+            userBubble.innerText = mensaje;
+            chatMessages.appendChild(userBubble);
+            input.value = "";
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            const loadingBubble = document.createElement("div");
+            loadingBubble.className = "msg-sol";
+            loadingBubble.id = "sol-loading";
+            loadingBubble.innerText = "Sol-IA está respondiendo con calidez...";
+            chatMessages.appendChild(loadingBubble);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            try {
+                const response = await fetch(RENDER_ENDPOINT, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ mensaje: mensaje, origen: "Web Aurion General" })
+                });
+
+                const data = await response.json();
+                const respuesta = data.respuesta || "Con mucho gusto te oriento.";
+                const loader = document.getElementById("sol-loading");
+                if (loader) loader.remove();
+
+                const solBubble = document.createElement("div");
+                solBubble.className = "msg-sol";
+                solBubble.innerHTML = respuesta.replace(/\n/g, "<br>");
+                chatMessages.appendChild(solBubble);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+
+                hablarRespuesta(respuesta);
+            } catch (err) {
+                const loader = document.getElementById("sol-loading");
+                if (loader) loader.remove();
+            }
+        }
+    </script>
+</body>
+                                                              </html>
