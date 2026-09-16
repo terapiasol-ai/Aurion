@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AURION | Plataforma de Despertar, Conciencia y Soberanía Integral</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>AURION Tutoría Escolar | Hábitos, PNL y Mineduc</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-dark: #0D1117;
-            --card-bg: #161D27;
+            --bg-dark: #10151D;
+            --card-bg: #18202C;
             --gold: #D4AF37;
-            --gold-light: #F6E7B0;
+            --gold-light: #F3E5AB;
             --text-light: #E2E8F0;
             --text-muted: #94A3B8;
             --accent-green: #25D366;
             --accent-blue: #0088cc;
-            --accent-purple: #A78BFA;
+            --soft-blue: #63B3ED;
         }
 
         * {
@@ -37,36 +37,35 @@
         }
 
         header {
-            background: linear-gradient(180deg, #182232 0%, var(--bg-dark) 100%);
+            background: linear-gradient(180deg, #1C2736 0%, var(--bg-dark) 100%);
             border-bottom: 2px solid var(--gold);
-            padding: 70px 20px 50px;
+            padding: 60px 20px 45px;
             text-align: center;
         }
 
         .badge {
             background: linear-gradient(135deg, #D4AF37, #AA7C11);
-            color: #0D1117;
-            padding: 6px 20px;
+            color: #10151D;
+            padding: 6px 18px;
             border-radius: 20px;
             font-weight: 700;
             display: inline-block;
-            margin-bottom: 18px;
+            margin-bottom: 15px;
             font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
         header h1 {
-            font-size: 2.4rem;
+            font-size: 2.2rem;
             color: var(--gold-light);
             margin-bottom: 15px;
-            line-height: 1.25;
-            text-shadow: 0 2px 15px rgba(212, 175, 55, 0.25);
+            line-height: 1.3;
         }
 
         header p {
-            font-size: 1.15rem;
-            max-width: 850px;
+            font-size: 1.1rem;
+            max-width: 800px;
             margin: 0 auto 25px;
             color: var(--text-muted);
         }
@@ -76,166 +75,213 @@
             gap: 15px;
             justify-content: center;
             flex-wrap: wrap;
-            margin-top: 25px;
+            margin-top: 20px;
         }
 
         .container {
-            max-width: 1100px;
+            max-width: 1050px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 35px 20px;
         }
 
-        /* BANNER AVATAR SOL-IA */
-        .avatar-banner {
-            background: linear-gradient(135deg, #1A2433 0%, #121822 100%);
-            border: 2px solid var(--gold);
-            border-radius: 18px;
+        .hero-banner {
+            background: linear-gradient(135deg, #1E293B 0%, #151D28 100%);
+            border: 1.5px solid var(--gold);
             padding: 35px 25px;
-            margin-bottom: 45px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            display: flex;
-            align-items: center;
-            gap: 25px;
-            flex-wrap: wrap;
+            border-radius: 16px;
+            margin-bottom: 35px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
         }
 
-        .avatar-img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            border: 3px solid var(--gold);
-            overflow: hidden;
-            flex-shrink: 0;
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+        .hero-banner h2 {
+            color: var(--gold-light);
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+        }
+
+        .hero-banner p {
+            font-size: 1.05rem;
+            color: #CBD5E1;
+            max-width: 820px;
             margin: 0 auto;
         }
 
-        .avatar-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        .habits-box {
+            background: linear-gradient(145deg, #182230, #0f151e);
+            border: 2px solid var(--gold);
+            border-radius: 15px;
+            padding: 40px 25px;
+            margin: 40px 0;
         }
 
-        .avatar-content {
-            flex: 1;
-            min-width: 280px;
+        .habits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .habit-item {
+            background: rgba(26, 34, 45, 0.7);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 10px;
+            padding: 22px;
             text-align: left;
         }
 
-        .avatar-content h3 {
+        .habit-item h4 {
             color: var(--gold-light);
-            font-size: 1.4rem;
             margin-bottom: 8px;
+            font-size: 1.1rem;
         }
 
-        .section-title {
-            text-align: center;
-            color: var(--gold-light);
-            font-size: 2rem;
-            margin: 50px 0 10px;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            color: var(--text-muted);
-            max-width: 750px;
-            margin: 0 auto 35px;
-            font-size: 1rem;
-        }
-
-        .grid-2 {
+        .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
+            margin-top: 25px;
         }
 
         .card {
             background: var(--card-bg);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            border-radius: 16px;
-            padding: 30px 25px;
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: transform 0.25s, border-color 0.25s;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-        }
-
-        .card:hover {
-            transform: translateY(-4px);
-            border-color: var(--gold);
-        }
-
-        .card-icon {
-            font-size: 2.4rem;
-            margin-bottom: 15px;
-            display: inline-block;
         }
 
         .card h3 {
             color: var(--gold);
-            font-size: 1.3rem;
             margin-bottom: 12px;
+            font-size: 1.25rem;
         }
 
-        .card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        .card-tag {
-            display: inline-block;
-            background: rgba(212, 175, 55, 0.15);
-            color: var(--gold-light);
-            padding: 4px 12px;
+        .comparison-box {
+            background: linear-gradient(135deg, #1A2838 0%, #121820 100%);
+            border: 1px solid var(--soft-blue);
+            padding: 30px 25px;
             border-radius: 12px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-top: 15px;
-            width: fit-content;
-        }
-
-        /* CAJA DESTACADA DE LEO */
-        .leo-box {
-            background: linear-gradient(145deg, #221a2c, #141724);
-            border: 2px solid var(--accent-purple);
-            border-radius: 18px;
-            padding: 40px 30px;
-            margin: 40px 0;
-            box-shadow: 0 10px 35px rgba(167, 139, 250, 0.2);
-        }
-
-        .leo-box h2 {
-            color: #C4B5FD;
-            font-size: 1.9rem;
-            margin-bottom: 12px;
+            margin: 35px 0;
             text-align: center;
         }
 
-        /* BOTONES */
+        .steps-box {
+            background: var(--card-bg);
+            border: 2px dashed var(--gold);
+            padding: 40px 25px;
+            border-radius: 15px;
+            margin-top: 40px;
+        }
+
+        .steps-list {
+            list-style: none;
+            margin-top: 25px;
+            text-align: left;
+            max-width: 780px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .steps-list li {
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            font-size: 1.05rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .steps-list li:last-child {
+            border-bottom: none;
+        }
+
+        .step-number {
+            background: var(--gold);
+            color: #121820;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+        }
+
+        .pricing-section {
+            margin-top: 50px;
+            background: var(--card-bg);
+            padding: 40px 20px;
+            border-radius: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .price-card {
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 25px 20px;
+            text-align: center;
+            background: #121820;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .price-card.featured {
+            border: 2px solid var(--gold);
+            background: #1E2836;
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.25);
+        }
+
+        .price-card h4 {
+            font-size: 1.15rem;
+            color: var(--gold-light);
+            margin-bottom: 8px;
+        }
+
+        .price-tag {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+
         .btn {
-            display: inline-block;
-            padding: 14px 28px;
+            display: block;
+            width: 100%;
+            color: white;
+            padding: 14px;
+            text-align: center;
+            border: none;
             border-radius: 30px;
             font-size: 1rem;
             font-weight: 700;
-            text-align: center;
+            cursor: pointer;
             text-decoration: none;
             transition: transform 0.2s;
-            cursor: pointer;
-            border: none;
         }
 
         .btn-gold {
             background: linear-gradient(135deg, #D4AF37, #AA7C11);
-            color: #0D1117 !important;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.35);
+            color: #121820 !important;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
         }
 
         .btn-whatsapp {
             background: linear-gradient(135deg, #25D366, #1EBE5D);
-            color: white !important;
             box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
         }
 
@@ -245,16 +291,16 @@
 
         footer {
             text-align: center;
-            padding: 45px 20px 30px;
-            background-color: #07090D;
+            padding: 40px 20px 25px;
+            background-color: #0A0D12;
             color: var(--text-muted);
-            margin-top: 70px;
+            margin-top: 60px;
             font-size: 0.9rem;
             border-top: 1px solid rgba(212, 175, 55, 0.2);
         }
 
         /* ============================================================== */
-        /* WIDGET INTERACTIVO VIVO DE SOL-IA (AURION) */
+        /* WIDGET INTERACTIVO DE SOL-IA CON MICRÓFONO INTEGRADO */
         /* ============================================================== */
         #sol-widget-container {
             position: fixed;
@@ -333,8 +379,8 @@
             right: 20px;
             width: 350px;
             max-width: calc(100vw - 40px);
-            height: 480px;
-            max-height: calc(100vh - 120px);
+            height: 490px;
+            max-height: calc(100vh - 110px);
             background: #141C26;
             border: 2px solid var(--gold);
             border-radius: 18px;
@@ -412,7 +458,36 @@
             background: #101620;
             border-top: 1px solid rgba(212, 175, 55, 0.2);
             display: flex;
+            align-items: center;
             gap: 8px;
+        }
+
+        .sol-mic-btn {
+            background: var(--gold);
+            border: none;
+            color: #10151D;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.2s;
+        }
+
+        .sol-mic-btn.recording {
+            background: #E53E3E;
+            color: white;
+            animation: pulse 1.2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); box-shadow: 0 0 12px #E53E3E; }
+            100% { transform: scale(1); }
         }
 
         .sol-chat-input-box input {
@@ -426,8 +501,8 @@
             outline: none;
         }
 
-        .sol-chat-input-box button {
-            background: var(--gold);
+        .sol-send-btn {
+            background: linear-gradient(135deg, #D4AF37, #AA7C11);
             border: none;
             color: #10151D;
             border-radius: 50%;
@@ -439,6 +514,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-shrink: 0;
         }
 
         .voice-toggle-btn {
@@ -454,15 +530,15 @@
 <body>
 
     <header>
-        <span class="badge">🌟 Ecosistema de Soberanía, Conciencia y Educación</span>
-        <h1>AURION: El Despertar del Ser Humano</h1>
-        <p>Una creación de <strong>Sol Sánchez Contreras</strong> donde la Inteligencia Artificial se pone al servicio del alma, la soberanía personal, la educación infantil y la evolución consciente.</p>
+        <span class="badge">🌸 Amor, Hábitos y Paz Familiar</span>
+        <h1>Tutoría Escolar Integral & Pedagogía con PNL</h1>
+        <p>Alineado al Mineduc (1° Básico a 4° Medio). Acompañamiento paciente para nivelar materias, crear hábitos diarios y devolver la tranquilidad al hogar sin gritos ni discusiones.</p>
         
         <div class="btn-header-group">
-            <a href="https://t.me/Solsanchez_bot" class="btn btn-gold">
+            <a href="https://t.me/Solsanchez_bot" class="btn btn-gold" style="width: auto; padding: 12px 28px;">
                 ✈️ Abrir Asistente en Telegram 24/7
             </a>
-            <a href="https://wa.me/56927541231?text=Hola,%20solicito%20informaci%C3%B3n%20institucional%20sobre%20el%20ecosistema%20AURION" class="btn btn-whatsapp">
+            <a href="https://wa.me/56927541231?text=Hola,%20solicito%20informaci%C3%B3n%20institucional%20sobre%20la%20Tutor%C3%ADa%20Escolar" class="btn btn-whatsapp" style="width: auto; padding: 12px 28px;">
                 📲 Contacto y Soporte por WhatsApp
             </a>
         </div>
@@ -470,166 +546,172 @@
 
     <div class="container">
 
-        <!-- MENSAJE DE SOL-IA (AVATAR OFICIAL) -->
-        <div class="avatar-banner">
-            <div class="avatar-img">
-                <img src="https://raw.githubusercontent.com/terapiasol-ai/Aurion/main/image%20(4).jpg" 
-                     onerror="this.onerror=null; this.src='https://files.manuscdn.com/user_upload_by_module/session_file/310519663295304532/SXAbPHcoYQWtVFRu.jpg';" 
-                     alt="Sol-IA">
-            </div>
-            <div class="avatar-content">
-                <h3>Te doy la bienvenida. Soy Sol-IA, tu anfitriona oficial.</h3>
-                <p style="color: #CBD5E1; font-size: 0.98rem;">
-                    Nuestra misión no es ofrecerte herramientas mecánicas ni frías. Cada uno de nuestros asistentes fue diseñado con un propósito sagrado: acompañarte a recuperar tu paz mental, sanar tus bloqueos, potenciar la educación de tus hijos y alcanzar tu verdadera soberanía.
-                </p>
-            </div>
-        </div>
-
-        <!-- ============================================================== -->
-        <!-- 1. LEO Y SUS 12 PERSONALIDADES -->
-        <!-- ============================================================== -->
-        <div class="leo-box">
-            <h2>🦁 LEO y sus 12 Personalidades: Maestría y Liderazgo del Ser</h2>
-            <p style="text-align: center; color: #E2E8F0; max-width: 820px; margin: 0 auto 25px; font-size: 1.05rem;">
-                LEO es el gran guía de transformación de Aurion. A través de sus 12 arquetipos y personalidades profundas, te ayuda a desentrañar tu propósito, forjar un carácter inquebrantable, gestionar tus emociones y liderar tu vida sin depender de la aprobación externa.
+        <!-- BLOQUE DE EMPATÍA -->
+        <div class="hero-banner">
+            <h2>🚨 ¿Estrés por notas y tareas en casa?</h2>
+            <p>
+                Los niños no son flojos ni les falta capacidad; solo necesitan una explicación a su propio ritmo y un mentor que no pierda la paciencia. Nuestro tutor escolar utiliza <strong>Programación Neurolingüística (PNL)</strong> para devolverles la confianza, preparar pruebas y transformar notas rojas en azules con cariño.
             </p>
-            <div style="text-align: center;">
-                <button onclick="toggleSolChat()" class="btn btn-gold" style="padding: 12px 30px;">
-                    ✨ Preguntarle a Sol-IA sobre LEO
-                </button>
+        </div>
+
+        <!-- LOS 4 HÁBITOS DE ORO -->
+        <div class="habits-box">
+            <h2 style="text-align: center; color: var(--gold-light); margin-bottom: 10px;">🌟 Mucho más que tareas: Hábitos de Vida para tu Hijo</h2>
+            <p style="text-align: center; color: var(--text-muted); max-width: 750px; margin: 0 auto 20px;">
+                Un verdadero mentor que enseña autonomía para que las mañanas dejen de ser una batalla:
+            </p>
+
+            <div class="habits-grid">
+                <div class="habit-item">
+                    <h4>🎒 1. Mochila lista la tarde anterior</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Le enseña al niño a revisar su horario, ordenar sus cuadernos y dejar su estuche listo cada tarde para salir al colegio con calma.</p>
+                </div>
+
+                <div class="habit-item">
+                    <h4>💌 2. El puente de amor con Mamá</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">En cada sesión le pregunta con dulzura: <em>"¿Te dieron alguna circular, libreta o aviso para tu mamá hoy?"</em>. ¡Se acabaron las comunicaciones olvidadas!</p>
+                </div>
+
+                <div class="habit-item">
+                    <h4>🧼 3. Higiene y mesa de estudio</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Le recuerda lavarse las manos antes de estudiar, tener su vaso de agua y mantener su espacio libre de desorden y distracciones.</p>
+                </div>
+
+                <div class="habit-item">
+                    <h4>🇨🇱 4. 100% Alineado al Mineduc</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Bases curriculares chilenas de 1° básico a 4° medio: Matemáticas, Lenguaje, Historia, Ciencias e Inglés con simulacros de 3 preguntas antes de cada prueba.</p>
+                </div>
             </div>
         </div>
 
-        <!-- ============================================================== -->
-        <!-- 2. DESPERTAR, SANACIÓN Y CONCIENCIA -->
-        <!-- ============================================================== -->
-        <h2 class="section-title">Conciencia, Sanación y Despertar</h2>
-        <p class="section-subtitle">Herramientas profundas para sanar el árbol genealógico y desprogramar las cargas del pasado:</p>
+        <!-- SUITE DE ASISTENTES EDUCATIVOS -->
+        <h2 style="text-align: center; color: var(--gold-light); margin: 40px 0 10px;">👩‍🏫 Nuestros Profesores y Mentores Especializados</h2>
+        <p style="text-align: center; color: var(--text-muted); margin-bottom: 25px;">Un ecosistema educativo completo para formar niños y jóvenes seguros:</p>
 
-        <div class="grid-2">
+        <div class="grid">
             <div class="card">
                 <div>
-                    <span class="card-icon">🕊️</span>
-                    <h3>Activación Soberana (Módulos & Videoteca)</h3>
-                    <p>Un recorrido integral en video para salir del miedo, romper creencias limitantes heredadas y recuperar la soberanía sobre tu cuerpo, tu mente, tus decisiones y tu familia.</p>
-                </div>
-                <span class="card-tag">Despertar & Soberanía</span>
-            </div>
-
-            <div class="card">
-                <div>
-                    <span class="card-icon">🌌</span>
-                    <h3>El Constelador Sistémico y el Oráculo</h3>
-                    <p>Espacios de contención e introspección profunda. El Constelador ilumina lealtades familiares invisibles y nudos emocionales; el Oráculo te brinda claridad, orden y guía en momentos de encrucijada.</p>
-                </div>
-                <span class="card-tag">Sanación & Claridad</span>
-            </div>
-        </div>
-
-        <!-- ============================================================== -->
-        <!-- 3. SUITE EDUCATIVA AURION -->
-        <!-- ============================================================== -->
-        <h2 class="section-title">Educación con Sentido para Nuestros Hijos</h2>
-        <p class="section-subtitle">Formando niños y jóvenes con hábitos sólidos, pensamiento crítico y sin el estrés escolar:</p>
-
-        <div class="grid-2">
-            <div class="card" style="border: 2px solid var(--gold);">
-                <div>
-                    <span class="card-icon">🎒</span>
-                    <h3>Tutoría Escolar con PNL (Alineado al Mineduc)</h3>
-                    <p>Acompañamiento amoroso para salvar el año escolar sin gritos en casa. Hábitos diarios: mochila lista la tarde anterior, revisión de avisos para mamá, higiene y nivelación desde 1° básico a 4° medio.</p>
-                </div>
-                <div style="margin-top: 15px;">
-                    <a href="https://terapiasol-ai.github.io/asistente-escolar/" class="btn btn-gold" style="width: 100%; font-size: 0.95rem; padding: 10px;">
-                        👉 Ver Página de Tutoría Escolar
-                    </a>
+                    <h3>📚 Tutor de Rescate Escolar</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Acompañamiento personalizado en materias atrasadas, comprensión lectora y matemáticas paso a paso con PNL.</p>
                 </div>
             </div>
 
             <div class="card">
                 <div>
-                    <span class="card-icon">🌍</span>
-                    <h3>Profesores de Inglés, Tecnología y Secular</h3>
-                    <p><strong>Inglés Conversacional:</strong> Hablar con confianza y sin vergüenza a equivocarse.<br>
-                    <strong>Profesor de Tecnología e IA:</strong> Jóvenes que pasan de ser consumidores de pantallas a creadores de herramientas y software.<br>
-                    <strong>Educación Secular:</strong> Hábitos de estudio y pensamiento crítico.</p>
+                    <h3>🇬🇧 Profesora de Inglés Conversacional</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Fluidez conversacional, vocabulario y pronunciación divertida sin vergüenza a equivocarse, adaptada a su edad.</p>
                 </div>
-                <span class="card-tag">Educación del Siglo XXI</span>
+            </div>
+
+            <div class="card">
+                <div>
+                    <h3>🏛️ Profesor de Educación Secular</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Desarrollo del pensamiento crítico, hábitos de investigación y autonomía escolar para dejar atrás la memorización mecánica.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div>
+                    <h3>💻 Profesor de Tecnología e IA</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Enseña a los niños a dejar de ser consumidores pasivos y convertirse en creadores digitales, aprendiendo lógica y software.</p>
+                </div>
             </div>
         </div>
 
-        <!-- ============================================================== -->
-        <!-- 4. SOBERANÍA FINANCIERA -->
-        <!-- ============================================================== -->
-        <h2 class="section-title">Soberanía Financiera: De Consumidor a Dueño</h2>
-        <p class="section-subtitle">Educación patrimonial realista y transparente para toda la familia:</p>
+        <!-- COMPARACIÓN ECONÓMICA -->
+        <div class="comparison-box">
+            <h3 style="color: var(--soft-blue); margin-bottom: 10px;">💡 Una inversión consciente en la paz de tu familia</h3>
+            <p style="font-size: 1.05rem;">
+                En Chile, un profesor particular presencial cobra entre <strong>$25.000 y $30.000 CLP por solo una hora</strong>.<br>
+                Con la <strong>Tutoría Escolar AURION</strong>, obtienes acompañamiento constante, hábitos diarios y paciencia infinita durante todo el mes por el valor de 1 sola sesión particular.
+            </p>
+        </div>
 
-        <div class="card" style="border: 2px solid var(--gold); max-width: 850px; margin: 0 auto 40px;">
-            <div>
-                <span class="card-icon">📈</span>
-                <h3>Escuela de Negocios LEO (Juego Metrópoli del Siglo XXI)</h3>
-                <p style="font-size: 1.05rem; color: #CBD5E1; margin-bottom: 12px;">
-                    Aprende a invertir en activos reales (S&P 500, QQQ, Apple y Bienes Raíces) mediante un <strong>simulador bursátil con una billetera virtual de práctica de $20.000 USD</strong>.
-                </p>
-                <div style="background: rgba(212, 175, 55, 0.1); border-left: 3px solid var(--gold); padding: 12px 15px; border-radius: 6px; margin: 15px 0;">
-                    <p style="font-size: 0.9rem; color: var(--gold-light);">
-                        💡 <strong>Transparencia total:</strong> Los $20.000 USD son saldo ficticio de entrenamiento para aprender sin arriesgar tu dinero real. La membresía del programa tiene un valor de solo <strong>$20.000 pesos chilenos (CLP) al mes</strong>.
-                    </p>
-                </div>
-            </div>
-            <div style="text-align: center; margin-top: 15px;">
-                <a href="https://t.me/Solsanchez_bot" class="btn btn-gold" style="padding: 12px 30px;">
-                    🚀 Entrar al Simulador en Telegram
+        <!-- BECA VIP 7 DÍAS -->
+        <div class="steps-box">
+            <h2 style="text-align: center; color: var(--gold-light);">🎁 Activa tu Beca VIP de 7 Días Gratis</h2>
+            <p style="text-align: center; color: var(--text-muted); margin-top: 5px;">Prueba la metodología sin ningún costo para ver cómo florece la confianza de tu hijo:</p>
+
+            <ul class="steps-list">
+                <li>
+                    <span class="step-number">1</span>
+                    <span><strong>Conoce la Metodología:</strong> Descubre cómo la PNL elimina el miedo y la frustración ante las evaluaciones.</span>
+                </li>
+                <li>
+                    <span class="step-number">2</span>
+                    <span><strong>Comparte con otra Familia:</strong> Comparte el enlace de la Beca en el grupo de WhatsApp del curso o con un amigo.</span>
+                </li>
+                <li>
+                    <span class="step-number">3</span>
+                    <span><strong>Inicia en el acto:</strong> Conversa con Sol-IA por voz o texto en la ventanita aquí abajo para activar tu Beca de inmediato.</span>
+                </li>
+            </ul>
+
+            <div style="text-align: center; margin-top: 30px;">
+                <a href="https://t.me/Solsanchez_bot" class="btn btn-gold" style="display: inline-block; width: auto; padding: 14px 35px; border-radius: 50px;">
+                    🎓 Iniciar y Activar Beca en Telegram
                 </a>
             </div>
         </div>
 
-        <!-- ============================================================== -->
-        <!-- 5. ASISTENTES PROFESIONALES -->
-        <!-- ============================================================== -->
-        <h2 class="section-title">Soluciones para Profesionales y Empresas</h2>
-        <p class="section-subtitle">Asistentes ejecutivas autónomas para liberar tiempo en tu actividad productiva:</p>
-
-        <div class="grid-2">
-            <div class="card">
-                <div>
-                    <span class="card-icon">👓</span>
-                    <h3>Valentina 2.0 (Salud, Clínicas y Ópticas)</h3>
-                    <p>Secretaria ejecutiva de agendamiento por voz en 1 minuto, lectura automatizada de recetas de lentes y respuesta express a pacientes las 24 horas.</p>
-                </div>
-                <span class="card-tag">$80.000 CLP / mes</span>
-            </div>
-
-            <div class="card">
-                <div>
-                    <span class="card-icon">🏢</span>
-                    <h3>Oficina Inmobiliaria Virtual</h3>
-                    <p>Filtro financiero riguroso bajo Ley 18.101, auditoría en el Conservador de Bienes Raíces (CBR) y asesoría para inversionistas en Chile.</p>
-                </div>
-                <span class="card-tag">$130.000 CLP / mes</span>
-            </div>
-        </div>
-
-        <!-- BANNER DE ORIENTACIÓN -->
-        <div style="text-align: center; margin-top: 60px; background: linear-gradient(135deg, #182230, #101620); border: 2px solid var(--gold); padding: 40px 20px; border-radius: 18px;">
-            <h3 style="color: var(--gold-light); font-size: 1.6rem; margin-bottom: 12px;">¿Por dónde te gustaría comenzar?</h3>
-            <p style="color: var(--text-muted); max-width: 650px; margin: 0 auto 25px; font-size: 1rem;">
-                Toca la ventanita de Sol-IA abajo a la derecha o ingresa a nuestro Telegram oficial. Te orientamos con cariño hacia el camino ideal para ti.
+        <!-- PLANES ESCOLARES OFICIALES -->
+        <div class="pricing-section">
+            <h2 style="text-align: center; color: var(--gold-light);">Planes de Acompañamiento Escolar (CLP)</h2>
+            <p style="text-align: center; color: var(--text-muted); max-width: 750px; margin: 10px auto 0;">
+                Comienza con tus <strong>7 Días Gratis de Beca VIP</strong>. Luego, elige el apoyo que tu familia necesita:
             </p>
-            <a href="https://t.me/Solsanchez_bot" class="btn btn-gold" style="padding: 14px 35px;">
-                ✈️ Conversar con Sol-IA en Telegram
-            </a>
+
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <div>
+                        <h4>Plan Refuerzo (2 Días)</h4>
+                        <p class="price-tag">$15.000 CLP / mes</p>
+                        <p style="font-size: 0.88rem; color: var(--text-muted);">2 sesiones por semana para resolver dudas puntuales de tareas y materias específicas.</p>
+                    </div>
+                </div>
+
+                <div class="price-card featured">
+                    <span style="background: var(--gold); color: #121820; padding: 3px 12px; border-radius: 10px; font-size: 0.72rem; font-weight: bold; position: absolute; top: -12px; left: 50%; transform: translateX(-50%);">EL FAVORITO DE MAMÁ</span>
+                    <div>
+                        <h4>Nivelación Mineduc (3 Días)</h4>
+                        <p class="price-tag">$25.000 CLP / mes</p>
+                        <p style="font-size: 0.88rem; color: #CBD5E0;">3 sesiones semanales para nivelar materias atrasadas, crear hábitos y asegurar notas azules.</p>
+                    </div>
+                </div>
+
+                <div class="price-card">
+                    <div>
+                        <h4>Plan Dúo Hermanos</h4>
+                        <p class="price-tag">$35.000 CLP / mes</p>
+                        <p style="font-size: 0.88rem; color: #25D366; font-weight: 600;">¡Ahorras $15.000 CLP!</p>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">Acompañamiento completo para 2 hijos en el mismo hogar.</p>
+                    </div>
+                </div>
+
+                <div class="price-card">
+                    <div>
+                        <h4>Plan Integral Full (5 Días)</h4>
+                        <p class="price-tag">$40.000 CLP / mes</p>
+                        <p style="font-size: 0.88rem; color: var(--text-muted);">Acompañamiento continuo de Lunes a Viernes: tareas, mochila lista y preparación de pruebas.</p>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>
 
+    <!-- CONTADOR DE VISITAS -->
+    <div style="text-align: center; margin-top: 30px;">
+        <img src="https://hits.sh/terapiasol-ai.github.io-escolaridad.svg?view=today-total&color=d4af37&label=Visitas%20Hoy%20/%20Total&labelColor=121820" alt="Visitas Escolaridad">
+    </div>
+
     <footer>
-        <p>&copy; 2026 AURION &bull; Plataforma de Despertar y Soberanía Integral</p>
-        <p style="font-size: 0.85rem; color: #64748B; margin-top: 8px;">Fundadora y Autora Intelectual: Sol Sánchez Contreras | Chile</p>
+        <p>&copy; 2026 AURION &bull; Plataforma de Despertar y Soberanía | Fundadora: Sol Sánchez Contreras</p>
+        <p style="font-size: 0.8rem; color: #64748B; margin-top: 8px;">Alineado con las Bases Curriculares oficiales del Ministerio de Educación de Chile (Mineduc).</p>
     </footer>
 
     <!-- ============================================================== -->
-    <!-- 🌟 WIDGET EN VIVO DE SOL-IA (PRESENCIA Y GUÍA EN AURION) -->
+    <!-- 🌟 WIDGET EN VIVO DE SOL-IA CON MICRÓFONO INTEGRADO -->
     <!-- ============================================================== -->
     <div id="sol-widget-container">
         <!-- BOTÓN BURBUJA -->
@@ -641,8 +723,8 @@
                 <div class="sol-online-dot"></div>
             </div>
             <div class="sol-bubble-text">
-                <div class="sol-bubble-title">Sol-IA • Tu Anfitriona</div>
-                <div class="sol-bubble-sub">🟢 En línea • Conversa aquí</div>
+                <div class="sol-bubble-title">Sol-IA • Tu Guía Escolar</div>
+                <div class="sol-bubble-sub">🟢 Habla o escribe aquí</div>
             </div>
         </div>
 
@@ -655,34 +737,100 @@
                          alt="Sol-IA">
                     <div>
                         <div style="color: #FFF; font-weight: 700; font-size: 13.5px;">Sol-IA Anfitriona</div>
-                        <div style="color: #25D366; font-size: 11px;">En vivo en Aurion</div>
+                        <div style="color: #25D366; font-size: 11px;">En vivo en la página</div>
                     </div>
                 </div>
                 <div style="display: flex; align-items: center;">
-                    <button class="voice-toggle-btn" id="voiceToggle" onclick="toggleVoiceAudio()" title="Activar/Desactivar Voz">🔊</button>
+                    <button class="voice-toggle-btn" id="voiceToggle" onclick="toggleVoiceAudio()" title="Activar/Desactivar Voz de Sol">🔊</button>
                     <button class="sol-chat-close" onclick="toggleSolChat()">✕</button>
                 </div>
             </div>
 
             <div class="sol-chat-messages" id="chatMessages">
                 <div class="msg-sol">
-                    ¡Hola! Te doy una cálida bienvenida a <strong>Aurion</strong>. Soy <strong>Sol-IA</strong>, tu anfitriona oficial y guía en este ecosistema.<br><br>
-                    Estoy aquí para acompañarte: desde la mentoría con Leo y sus 12 personalidades, la activación soberana, el constelador y oráculo, hasta la educación de tus hijos.<br><br>
-                    Cuéntame: ¿qué área de tu vida o familia te gustaría transformar hoy?
+                    ¡Hola! Qué alegría tenerte aquí. Soy <strong>Sol-IA</strong>, tu anfitriona y guía pedagógica.<br><br>
+                    <strong>Toca el micrófono 🎙️ abajo y háblame con confianza</strong>: cuéntame en qué curso va tu hijo o qué materia le cuesta y te oriento con mucho cariño.
                 </div>
             </div>
 
             <div class="sol-chat-input-box">
-                <input type="text" id="solUserInput" placeholder="Escribe tu consulta aquí..." onkeypress="handleKey(event)">
-                <button onclick="enviarMensajeWeb()">➤</button>
+                <button class="sol-mic-btn" id="solMicBtn" onclick="toggleDictadoVoz()" title="Toca para hablar por voz">🎙️</button>
+                <input type="text" id="solUserInput" placeholder="Toca el micrófono o escribe..." onkeypress="handleKey(event)">
+                <button class="sol-send-btn" onclick="enviarMensajeWeb()">➤</button>
             </div>
         </div>
     </div>
 
-    <!-- SCRIPT DE CONEXIÓN CON RENDER -->
+    <!-- SCRIPT DE RECONOCIMIENTO DE VOZ Y CONEXIÓN -->
     <script>
         const RENDER_ENDPOINT = "https://solsanchez-ai-ulq2.onrender.com/api/chat";
         let vozActiva = true;
+        let recognition = null;
+        let escuchando = false;
+
+        // Configuración del micrófono nativo del celular
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        if (SpeechRecognition) {
+            recognition = new SpeechRecognition();
+            recognition.lang = 'es-CL';
+            recognition.continuous = false;
+            recognition.interimResults = true;
+
+            recognition.onstart = function() {
+                escuchando = true;
+                const micBtn = document.getElementById("solMicBtn");
+                micBtn.classList.add("recording");
+                micBtn.innerText = "🔴";
+                document.getElementById("solUserInput").placeholder = "Escuchando tu voz...";
+            };
+
+            recognition.onresult = function(event) {
+                let texto = "";
+                for (let i = event.resultIndex; i < event.results.length; i++) {
+                    texto += event.results[i][0].transcript;
+                }
+                document.getElementById("solUserInput").value = texto;
+            };
+
+            recognition.onerror = function() {
+                detenerMicrofono();
+            };
+
+            recognition.onend = function() {
+                detenerMicrofono();
+                const input = document.getElementById("solUserInput");
+                if (input.value.trim().length > 0) {
+                    setTimeout(() => {
+                        enviarMensajeWeb();
+                    }, 400);
+                }
+            };
+        }
+
+        function toggleDictadoVoz() {
+            if (!recognition) {
+                alert("Para hablar por voz, por favor toca la cajita de texto y presiona el botón de micrófono que tiene el teclado de tu celular.");
+                return;
+            }
+            if (escuchando) {
+                recognition.stop();
+            } else {
+                recognition.start();
+            }
+        }
+
+        function detenerMicrofono() {
+            escuchando = false;
+            const micBtn = document.getElementById("solMicBtn");
+            if (micBtn) {
+                micBtn.classList.remove("recording");
+                micBtn.innerText = "🎙️";
+            }
+            const input = document.getElementById("solUserInput");
+            if (input) {
+                input.placeholder = "Toca el micrófono o escribe...";
+            }
+        }
 
         function toggleSolChat() {
             const chat = document.getElementById("sol-chat-window");
@@ -690,7 +838,6 @@
                 chat.style.display = "none";
             } else {
                 chat.style.display = "flex";
-                document.getElementById("solUserInput").focus();
             }
         }
 
@@ -737,7 +884,7 @@
             const loadingBubble = document.createElement("div");
             loadingBubble.className = "msg-sol";
             loadingBubble.id = "sol-loading";
-            loadingBubble.innerText = "Sol-IA está respondiendo con calidez...";
+            loadingBubble.innerText = "Sol-IA está respondiendo con cariño...";
             chatMessages.appendChild(loadingBubble);
             chatMessages.scrollTop = chatMessages.scrollHeight;
 
@@ -745,11 +892,11 @@
                 const response = await fetch(RENDER_ENDPOINT, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ mensaje: mensaje, origen: "Web Aurion General" })
+                    body: JSON.stringify({ mensaje: mensaje, origen: "Web Escolaridad" })
                 });
 
                 const data = await response.json();
-                const respuesta = data.respuesta || "¡Gracias por visitar Aurion! Con mucho gusto te oriento.";
+                const respuesta = data.respuesta || "¡Gracias por escribir! Con mucho gusto te oriento.";
 
                 const loader = document.getElementById("sol-loading");
                 if (loader) loader.remove();
@@ -768,7 +915,7 @@
 
                 const solBubble = document.createElement("div");
                 solBubble.className = "msg-sol";
-                solBubble.innerText = "He recibido tu consulta. Para una conversación más fluida, también puedes ingresar a nuestro Telegram oficial.";
+                solBubble.innerText = "He recibido tu consulta. Para darte una atención más fluida, también puedes ingresar a nuestro Telegram oficial.";
                 chatMessages.appendChild(solBubble);
                 chatMessages.scrollTop = chatMessages.scrollHeight;
             }
