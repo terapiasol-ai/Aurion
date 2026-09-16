@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AURION | Aula Virtual al Alcance de Todos & Red de Padrinos</title>
+    <title>AURION | Aula Virtual al Alcance de Todos & Soberanía Laboral</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -75,7 +75,42 @@
         .avatar-content { flex: 1; min-width: 270px; text-align: left; }
         .avatar-content h3 { color: var(--gold-light); font-size: 1.3rem; margin-bottom: 6px; }
 
-        /* SECCIÓN PADRINOS AURION (DESTACADA) */
+        /* SECCIÓN SOBERANÍA LABORAL JUVENIL (DESTACADA PARA PAPÁS) */
+        .tecno-juvenil-box {
+            background: linear-gradient(145deg, #132238, #0B1422);
+            border: 2px solid #00B4D8;
+            border-radius: 18px;
+            padding: 35px 22px;
+            margin: 35px 0;
+            box-shadow: 0 10px 35px rgba(0, 180, 216, 0.25);
+            text-align: left;
+        }
+
+        .tecno-juvenil-box h2 {
+            color: #90E0EF;
+            font-size: 1.65rem;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .tecno-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 22px 0;
+        }
+
+        .tecno-item {
+            background: rgba(10, 14, 20, 0.75);
+            border: 1px solid rgba(0, 180, 216, 0.35);
+            border-radius: 12px;
+            padding: 18px;
+        }
+
+        .tecno-item h4 { color: #90E0EF; font-size: 1.05rem; margin-bottom: 8px; }
+        .tecno-item p { font-size: 0.88rem; color: #CBD5E1; line-height: 1.55; }
+
+        /* PADRINOS */
         .padrinos-box {
             background: linear-gradient(135deg, #1D2838 0%, #121A26 100%);
             border: 2px solid var(--gold);
@@ -86,12 +121,7 @@
             text-align: left;
         }
 
-        .padrinos-box h2 {
-            color: var(--gold-light);
-            font-size: 1.65rem;
-            margin-bottom: 12px;
-            text-align: center;
-        }
+        .padrinos-box h2 { color: var(--gold-light); font-size: 1.65rem; margin-bottom: 12px; text-align: center; }
 
         .padrinos-grid {
             display: grid;
@@ -159,6 +189,7 @@
         .btn { display: inline-block; padding: 13px 26px; border-radius: 30px; font-size: 0.95rem; font-weight: 700; text-decoration: none; transition: transform 0.2s; border: none; cursor: pointer; text-align: center; }
         .btn-gold { background: linear-gradient(135deg, #D4AF37, #AA7C11); color: #0A0E14 !important; }
         .btn-whatsapp { background: linear-gradient(135deg, #25D366, #1EBE5D); color: white !important; }
+        .btn-blue { background: linear-gradient(135deg, #00B4D8, #0077B6); color: white !important; }
         .btn:hover { transform: scale(1.02); }
 
         footer { text-align: center; padding: 40px 15px 25px; background: #06080B; color: var(--text-muted); margin-top: 60px; font-size: 0.85rem; border-top: 1px solid rgba(212, 175, 55, 0.2); }
@@ -269,6 +300,37 @@
         </div>
 
         <!-- ============================================================== -->
+        <!-- 💻 SOBERANÍA LABORAL JUVENIL (LA RESPUESTA PARA LOS PADRES) -->
+        <!-- ============================================================== -->
+        <div class="tecno-juvenil-box">
+            <h2>💻 Soberanía Laboral Juvenil: Creadores de Tecnología e IA</h2>
+            <p style="text-align: center; color: #E2E8F0; max-width: 840px; margin: 0 auto 15px; font-size: 1rem;">
+                <strong>Para la angustia de los padres que temen por el futuro laboral de sus hijos:</strong> en Aurion formamos jóvenes con herramientas reales para que <strong>generen sus propios ingresos antes de salir del colegio</strong> y jamás dependan de un empleo precario ni de aplicaciones de transporte.
+            </p>
+
+            <div class="tecno-grid">
+                <div class="tecno-item">
+                    <h4>🛠️ De Consumidores a Creadores</h4>
+                    <p>Dejan de gastar 6 horas diarias en redes sociales o videojuegos para aprender lógica, herramientas No-Code y construcción de software útil.</p>
+                </div>
+                <div class="tecno-item">
+                    <h4>💰 Activos Digitales Monetizables</h4>
+                    <p>Aprenden a crear asistentes inteligentes, automatizaciones para empresas y páginas web que pueden vender a clientes de todo el mundo desde su habitación.</p>
+                </div>
+                <div class="tecno-item">
+                    <h4>🛡️ Inmunidad a la Cesantía</h4>
+                    <p>No esperan 5 años de universidad para descubrir si hay trabajo: adquieren soberanía productiva antes de terminar la Enseñanza Media.</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 15px;">
+                <button onclick="activarChatTecno()" class="btn btn-blue" style="padding: 13px 32px; font-size: 1rem;">
+                    🚀 Conocer el Plan de Tecnología para Jóvenes
+                </button>
+            </div>
+        </div>
+
+        <!-- ============================================================== -->
         <!-- 🤝 PROGRAMA DE PADRINOS AURION (SIEMBRA EDUCACIÓN Y FUTURO) -->
         <!-- ============================================================== -->
         <div class="padrinos-box">
@@ -368,11 +430,11 @@
         <div class="grid-2">
             <div class="card">
                 <div>
-                    <span class="card-icon">👓</span>
-                    <h3>Valentina 2.0 (Salud y Ópticas)</h3>
-                    <p>Secretaria ejecutiva de agendamiento por voz en 1 minuto, lectura automatizada de recetas de lentes y respuesta express a pacientes 24/7.</p>
+                    <span class="card-icon">💼</span>
+                    <h3>Sol-IA Secretaria Ejecutiva (Agenda Autónoma)</h3>
+                    <p>Secretaria virtual inteligente con agenda infinita 24/7 para abogados, médicos, clínicas, terapeutas y empresas. Agendamiento por voz en 1 minuto y filtro de clientes.</p>
                 </div>
-                <span class="card-tag">Salud & Clínicas</span>
+                <span class="card-tag">Productividad Total</span>
             </div>
 
             <div class="card">
@@ -388,7 +450,7 @@
     </div>
 
     <footer>
-        <p>&copy; 2026 AURION &bull; «Aula Virtual al Alcance de Todos» &bull; Red de Padrinos Soberanos</p>
+        <p>&copy; 2026 AURION &bull; «Aula Virtual al Alcance de Todos» &bull; Soberanía Laboral Juvenil</p>
         <p style="font-size: 0.8rem; color: #64748B; margin-top: 6px;">Creadora Suprema y Autora Intelectual: Sol Sánchez Contreras | Chile</p>
     </footer>
 
@@ -426,7 +488,7 @@
             <div class="sol-chat-messages" id="chatMessages">
                 <div class="msg-sol">
                     ¡Hola! Te doy una cálida bienvenida a <strong>Aurion</strong>. Soy <strong>Sol-IA</strong>, tu anfitriona oficial.<br><br>
-                    Toca el micrófono 🎙️ o escribe: cuéntame en qué área te gustaría que te oriente hoy (el aula escolar, sumarte a la <strong>Red de Padrinos</strong>, mentoría con Leo o bienestar) y conversamos con calma.
+                    Toca el micrófono 🎙️ o escribe: cuéntame si te interesa la formación en <strong>Tecnología e IA para jóvenes</strong>, el aula escolar, sumarte como <strong>Padrino</strong> o la mentoría con Leo, y conversamos con calma.
                 </div>
             </div>
 
@@ -453,6 +515,14 @@
             enviarMensajeWeb();
         }
 
+        function activarChatTecno() {
+            const chat = document.getElementById("sol-chat-window");
+            chat.style.display = "flex";
+            const input = document.getElementById("solUserInput");
+            input.value = "Hola Sol-IA, me interesa saber cómo mi hijo puede aprender Tecnología e IA para generar ingresos antes de salir del colegio.";
+            enviarMensajeWeb();
+        }
+
         const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
         if (SpeechRecognition) {
             recognition = new SpeechRecognition();
@@ -470,101 +540,4 @@
             recognition.onresult = function(event) {
                 let texto = "";
                 for (let i = event.resultIndex; i < event.results.length; i++) {
-                    texto += event.results[i][0].transcript;
-                }
-                document.getElementById("solUserInput").value = texto;
-            };
-
-            recognition.onerror = function() { detenerMic(); };
-            recognition.onend = function() {
-                detenerMic();
-                const inp = document.getElementById("solUserInput");
-                if (inp.value.trim().length > 0) {
-                    setTimeout(() => { enviarMensajeWeb(); }, 400);
-                }
-            };
-        }
-
-        function toggleDictadoVoz() {
-            if (!recognition) return;
-            if (escuchando) recognition.stop();
-            else recognition.start();
-        }
-
-        function detenerMic() {
-            escuchando = false;
-            const btn = document.getElementById("solMicBtn");
-            if (btn) {
-                btn.classList.remove("recording");
-                btn.innerText = "🎙️";
-            }
-        }
-
-        function toggleSolChat() {
-            const chat = document.getElementById("sol-chat-window");
-            chat.style.display = (chat.style.display === "flex") ? "none" : "flex";
-        }
-
-        function toggleVoiceAudio() {
-            vozActiva = !vozActiva;
-            document.getElementById("voiceToggle").innerText = vozActiva ? "🔊" : "🔇";
-        }
-
-        function hablarRespuesta(texto) {
-            if (!vozActiva || !('speechSynthesis' in window)) return;
-            window.speechSynthesis.cancel();
-            let limpio = texto.replace(/https?:\/\/\S+/g, "").replace(/[*#_~`]/g, "");
-            const utter = new SpeechSynthesisUtterance(limpio);
-            utter.lang = "es-CL";
-            window.speechSynthesis.speak(utter);
-        }
-
-        function handleKey(e) { if (e.key === "Enter") enviarMensajeWeb(); }
-
-        async function enviarMensajeWeb() {
-            const input = document.getElementById("solUserInput");
-            const mensaje = input.value.trim();
-            if (!mensaje) return;
-
-            const chatMessages = document.getElementById("chatMessages");
-            const userBubble = document.createElement("div");
-            userBubble.className = "msg-user";
-            userBubble.innerText = mensaje;
-            chatMessages.appendChild(userBubble);
-            input.value = "";
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-
-            const loadingBubble = document.createElement("div");
-            loadingBubble.className = "msg-sol";
-            loadingBubble.id = "sol-loading";
-            loadingBubble.innerText = "Sol-IA está respondiendo con calidez...";
-            chatMessages.appendChild(loadingBubble);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-
-            try {
-                const response = await fetch(RENDER_ENDPOINT, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ mensaje: mensaje, origen: "Web Aurion General" })
-                });
-
-                const data = await response.json();
-                const respuesta = data.respuesta || "Con mucho gusto te oriento.";
-                const loader = document.getElementById("sol-loading");
-                if (loader) loader.remove();
-
-                const solBubble = document.createElement("div");
-                solBubble.className = "msg-sol";
-                solBubble.innerHTML = respuesta.replace(/\n/g, "<br>");
-                chatMessages.appendChild(solBubble);
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-
-                hablarRespuesta(respuesta);
-            } catch (err) {
-                const loader = document.getElementById("sol-loading");
-                if (loader) loader.remove();
-            }
-        }
-    </script>
-</body>
-</html>
+                    texto += event.res
