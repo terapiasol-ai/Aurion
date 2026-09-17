@@ -183,7 +183,7 @@
         .msg-sol { background: #1B2636; border: 1px solid rgba(212, 175, 55, 0.3); color: #E2E8F0; padding: 12px 15px; border-radius: 14px 14px 14px 2px; max-width: 88%; line-height: 1.5; align-self: flex-start; }
         .msg-user { background: linear-gradient(135deg, #D4AF37, #AA7C11); color: #10151D; padding: 10px 14px; border-radius: 14px 14px 2px 14px; max-width: 85%; font-weight: 600; line-height: 1.45; align-self: flex-end; }
 
-        /* INDICADOR DE ESCRITURA */
+        /* PUNTITOS DE ESCRITURA */
         .typing-indicator {
             display: inline-flex;
             gap: 4px;
@@ -440,19 +440,31 @@
 
             <div class="sol-chat-input-box">
                 <button class="sol-mic-btn" id="solMicBtn" onclick="toggleDictadoVoz()" title="Hablar por voz">🎙️</button>
-                <input type="text" id="solUserInput" placeholder="Toca el micrófono y habla con calma..." onkeypress="if(event.key==='Enter') enviarMensajeWeb()">
+                <input type="text" id="solUserInput" placeholder="Toca el micrófono y habla a tu ritmo..." onkeypress="if(event.key==='Enter') enviarMensajeWeb()">
                 <button class="sol-send-btn" onclick="enviarMensajeWeb()">➤</button>
             </div>
         </div>
     </div>
 
-    <!-- SCRIPT CON VOZ NEURAL Y PAUSA AMPLIA DE MICRÓFONO -->
+    <!-- SCRIPT CORREGIDO: SIN REPETICIÓN DE PALABRAS Y CON VOZ NEURAL HUMANA -->
     <script>
         const RENDER_ENDPOINT = "https://solsanchez-ai-ulq2.onrender.com/api/chat";
         let vozActiva = true;
         let recognition = null;
         let escuchando = false;
         let silencioTimer = null;
+        let vocesCargadas = [];
+
+        // CARGA ACTIVA DE VOCES NEURALES
+        function cargarVoces() {
+            if ('speechSynthesis' in window) {
+                vocesCargadas = window.speechSynthesis.getVoices();
+            }
+        }
+        if ('speechSynthesis' in window) {
+            cargarVoces();
+            window.speechSynthesis.onvoiceschanged = cargarVoces;
+        }
 
         // CONTADOR REAL (BASE 25+)
         function inicializarContadorAurion() {
@@ -473,36 +485,40 @@
             enviarMensajeWeb();
         }
 
-        // MICRÓFONO CON PAUSA PACIENTE DE 2.5 SEGUNDOS
+        // RECONOCIMIENTO DE VOZ SIN REPETICIÓN
         const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
         if (SpeechRecognition) {
             recognition = new SpeechRecognition();
             recognition.lang = 'es-CL';
-            recognition.continuous = true; // No corta abruptamente
+            recognition.continuous = true;
             recognition.interimResults = true;
 
             recognition.onstart = function() {
                 escuchando = true;
                 const btn = document.getElementById("solMicBtn");
-                btn.classList.add("recording");
-                btn.innerText = "🔴";
+                if (btn) {
+                    btn.classList.add("recording");
+                    btn.innerText = "🔴";
+                }
             };
 
             recognition.onresult = function(event) {
-                let texto = "";
+                // Reconstrucción limpia de la frase completa (sin duplicar palabras)
+                let fraseCompleta = "";
                 for (let i = 0; i < event.results.length; i++) {
-                    texto += event.results[i][0].transcript;
+                    fraseCompleta += event.results[i][0].transcript;
                 }
-                document.getElementById("solUserInput").value = texto;
+                
+                document.getElementById("solUserInput").value = fraseCompleta;
 
-                // Espera 2.5 segundos de silencio antes de enviar para permitir hablar con calma
+                // Espera 2 segundos completos de silencio antes de procesar
                 clearTimeout(silencioTimer);
                 silencioTimer = setTimeout(() => {
-                    if (escuchando && texto.trim().length > 0) {
+                    if (escuchando && fraseCompleta.trim().length > 0) {
                         detenerMic();
                         enviarMensajeWeb();
                     }
-                }, 2500);
+                }, 2000);
             };
 
             recognition.onerror = function() { detenerMic(); };
@@ -510,7 +526,7 @@
                 if (escuchando) {
                     detenerMic();
                     const inp = document.getElementById("solUserInput");
-                    if (inp.value.trim().length > 0) {
+                    if (inp && inp.value.trim().length > 0) {
                         enviarMensajeWeb();
                     }
                 }
@@ -552,29 +568,38 @@
             document.getElementById("voiceToggle").innerText = vozActiva ? "🔊" : "🔇";
         }
 
-        // VOZ NEURAL EN ESPAÑOL DE ALTA DEFINICIÓN
-        function obtenerVozNeural() {
-            const voces = window.speechSynthesis.getVoices();
-            return voces.find(v => (v.lang.startsWith("es") || v.lang.includes("ES") || v.lang.includes("CL")) && (v.name.includes("Google") || v.name.includes("Natural") || v.name.includes("Neural") || v.name.includes("Online") || v.name.includes("Paulina") || v.name.includes("Sabina"))) || voces.find(v => v.lang.startsWith("es"));
-        }
+        // MOTOR DE VOZ NEURAL HUMANA (PAUSADA, CÁLIDA Y CON AIRE)
+        function hablarRespuesta(texto, audioServidor = null) {
+            if (!vozActiva) return;
 
-        if ('speechSynthesis' in window) {
-            window.speechSynthesis.onvoiceschanged = obtenerVozNeural;
-        }
+            // 1. Si el servidor envió audio neural directo, reproducirlo
+            if (audioServidor) {
+                const snd = new Audio(audioServidor.startsWith("http") ? audioServidor : "data:audio/mp3;base64," + audioServidor);
+                snd.play();
+                return;
+            }
 
-        function hablarRespuesta(texto) {
-            if (!vozActiva || !('speechSynthesis' in window)) return;
+            if (!('speechSynthesis' in window)) return;
             window.speechSynthesis.cancel();
             
             let limpio = texto.replace(/https?:\/\/\S+/g, "").replace(/[*#_~`]/g, "");
             const utter = new SpeechSynthesisUtterance(limpio);
             
-            const voz = obtenerVozNeural();
-            if (voz) utter.voice = voz;
+            if (vocesCargadas.length === 0) cargarVoces();
+            
+            // Priorizar voz neural de alta fidelidad en español
+            const vozNeural = vocesCargadas.find(v => 
+                (v.lang.startsWith("es") || v.lang.includes("ES") || v.lang.includes("CL") || v.lang.includes("MX")) &&
+                (v.name.includes("Google") || v.name.includes("Natural") || v.name.includes("Neural") || v.name.includes("Paulina") || v.name.includes("Sabina") || v.name.includes("Elena") || v.name.includes("Online"))
+            ) || vocesCargadas.find(v => v.lang.startsWith("es"));
+
+            if (vozNeural) {
+                utter.voice = vozNeural;
+            }
 
             utter.lang = "es-CL";
-            utter.rate = 0.95; // Ritmo pausado y cálido
-            utter.pitch = 1.0;
+            utter.rate = 0.92;  // Cadencia humana, pausada y elegante (no apresurada)
+            utter.pitch = 0.98; // Tono orgánico, cálido y sin resonancia metálica
             window.speechSynthesis.speak(utter);
         }
 
@@ -607,6 +632,8 @@
 
                 const data = await response.json();
                 const respuesta = data.respuesta || "Con mucho gusto te oriento.";
+                const audioData = data.audio || data.audio_url || null;
+
                 const typing = document.getElementById("sol-typing");
                 if (typing) typing.remove();
 
@@ -616,7 +643,7 @@
                 chatMessages.appendChild(solBubble);
                 chatMessages.scrollTop = chatMessages.scrollHeight;
 
-                hablarRespuesta(respuesta);
+                hablarRespuesta(respuesta, audioData);
             } catch (err) {
                 const typing = document.getElementById("sol-typing");
                 if (typing) typing.remove();
