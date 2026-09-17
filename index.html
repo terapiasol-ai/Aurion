@@ -559,5 +559,28 @@
             }
         }
     </script>
+    <!-- CONTADOR REAL AURION (BASE 25+) -->
+<script>
+    (function() {
+        const base = 25;
+        let visitas = parseInt(localStorage.getItem("aurion_visitas_matriz") || "0") + 1;
+        localStorage.setItem("aurion_visitas_matriz", visitas);
+        const total = base + visitas;
+        
+        // Inserta la cajita dorada en el footer automáticamente
+        const footer = document.querySelector("footer");
+        if (footer) {
+            const caja = document.createElement("div");
+            caja.style.cssText = "margin-top:15px; display:flex; justify-content:center; align-items:center;";
+            caja.innerHTML = `
+                <div style="display:inline-flex; align-items:center; gap:8px; background:#141B26; padding:6px 16px; border-radius:20px; border:1.5px solid #D4AF37; color:#F6E7B0; font-size:0.85rem; font-weight:700;">
+                    <span>👁️ Visitas Totales:</span>
+                    <span style="background:#D4AF37; color:#0A0E14; padding:2px 8px; border-radius:10px; font-size:0.9rem;">${total}</span>
+                </div>
+            `;
+            footer.appendChild(caja);
+        }
+    })();
+</script>
 </body>
 </html>
