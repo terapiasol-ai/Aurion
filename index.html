@@ -183,7 +183,7 @@
         .msg-sol { background: #1B2636; border: 1px solid rgba(212, 175, 55, 0.3); color: #E2E8F0; padding: 12px 15px; border-radius: 14px 14px 14px 2px; max-width: 88%; line-height: 1.5; align-self: flex-start; }
         .msg-user { background: linear-gradient(135deg, #D4AF37, #AA7C11); color: #10151D; padding: 10px 14px; border-radius: 14px 14px 2px 14px; max-width: 85%; font-weight: 600; line-height: 1.45; align-self: flex-end; }
 
-        /* ANIMACIÓN DE ESCRITURA HUMANA (TRES PUNTITOS) */
+        /* INDICADOR DE ESCRITURA */
         .typing-indicator {
             display: inline-flex;
             gap: 4px;
@@ -440,30 +440,19 @@
 
             <div class="sol-chat-input-box">
                 <button class="sol-mic-btn" id="solMicBtn" onclick="toggleDictadoVoz()" title="Hablar por voz">🎙️</button>
-                <input type="text" id="solUserInput" placeholder="Toca el micrófono o escribe..." onkeypress="if(event.key==='Enter') enviarMensajeWeb()">
+                <input type="text" id="solUserInput" placeholder="Toca el micrófono y habla con calma..." onkeypress="if(event.key==='Enter') enviarMensajeWeb()">
                 <button class="sol-send-btn" onclick="enviarMensajeWeb()">➤</button>
             </div>
         </div>
     </div>
 
-    <!-- SCRIPT CON VOZ NEURAL Y RESPUESTA HUMANA DIRECTA -->
+    <!-- SCRIPT CON VOZ NEURAL Y PAUSA AMPLIA DE MICRÓFONO -->
     <script>
         const RENDER_ENDPOINT = "https://solsanchez-ai-ulq2.onrender.com/api/chat";
         let vozActiva = true;
         let recognition = null;
         let escuchando = false;
-        let vocesDisponibles = [];
-
-        // CARGADOR Y FILTRO DE VOCES NEURALES HUMANIZADAS
-        function cargarVocesNeurales() {
-            if ('speechSynthesis' in window) {
-                vocesDisponibles = window.speechSynthesis.getVoices();
-            }
-        }
-        if ('speechSynthesis' in window) {
-            cargarVocesNeurales();
-            window.speechSynthesis.onvoiceschanged = cargarVocesNeurales;
-        }
+        let silencioTimer = null;
 
         // CONTADOR REAL (BASE 25+)
         function inicializarContadorAurion() {
@@ -484,12 +473,12 @@
             enviarMensajeWeb();
         }
 
-        // RECONOCIMIENTO DE VOZ
+        // MICRÓFONO CON PAUSA PACIENTE DE 2.5 SEGUNDOS
         const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
         if (SpeechRecognition) {
             recognition = new SpeechRecognition();
             recognition.lang = 'es-CL';
-            recognition.continuous = false;
+            recognition.continuous = true; // No corta abruptamente
             recognition.interimResults = true;
 
             recognition.onstart = function() {
@@ -501,30 +490,51 @@
 
             recognition.onresult = function(event) {
                 let texto = "";
-                for (let i = event.resultIndex; i < event.results.length; i++) {
+                for (let i = 0; i < event.results.length; i++) {
                     texto += event.results[i][0].transcript;
                 }
                 document.getElementById("solUserInput").value = texto;
+
+                // Espera 2.5 segundos de silencio antes de enviar para permitir hablar con calma
+                clearTimeout(silencioTimer);
+                silencioTimer = setTimeout(() => {
+                    if (escuchando && texto.trim().length > 0) {
+                        detenerMic();
+                        enviarMensajeWeb();
+                    }
+                }, 2500);
             };
 
             recognition.onerror = function() { detenerMic(); };
             recognition.onend = function() {
-                detenerMic();
-                const inp = document.getElementById("solUserInput");
-                if (inp.value.trim().length > 0) {
-                    setTimeout(() => { enviarMensajeWeb(); }, 350);
+                if (escuchando) {
+                    detenerMic();
+                    const inp = document.getElementById("solUserInput");
+                    if (inp.value.trim().length > 0) {
+                        enviarMensajeWeb();
+                    }
                 }
             };
         }
 
         function toggleDictadoVoz() {
             if (!recognition) return;
-            if (escuchando) recognition.stop();
-            else recognition.start();
+            if (escuchando) {
+                clearTimeout(silencioTimer);
+                detenerMic();
+                enviarMensajeWeb();
+            } else {
+                document.getElementById("solUserInput").value = "";
+                recognition.start();
+            }
         }
 
         function detenerMic() {
             escuchando = false;
+            clearTimeout(silencioTimer);
+            if (recognition) {
+                try { recognition.stop(); } catch(e) {}
+            }
             const btn = document.getElementById("solMicBtn");
             if (btn) {
                 btn.classList.remove("recording");
@@ -542,7 +552,16 @@
             document.getElementById("voiceToggle").innerText = vozActiva ? "🔊" : "🔇";
         }
 
-        // VOZ NEURAL HUMANA Y FLUIDA
+        // VOZ NEURAL EN ESPAÑOL DE ALTA DEFINICIÓN
+        function obtenerVozNeural() {
+            const voces = window.speechSynthesis.getVoices();
+            return voces.find(v => (v.lang.startsWith("es") || v.lang.includes("ES") || v.lang.includes("CL")) && (v.name.includes("Google") || v.name.includes("Natural") || v.name.includes("Neural") || v.name.includes("Online") || v.name.includes("Paulina") || v.name.includes("Sabina"))) || voces.find(v => v.lang.startsWith("es"));
+        }
+
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.onvoiceschanged = obtenerVozNeural;
+        }
+
         function hablarRespuesta(texto) {
             if (!vozActiva || !('speechSynthesis' in window)) return;
             window.speechSynthesis.cancel();
@@ -550,20 +569,12 @@
             let limpio = texto.replace(/https?:\/\/\S+/g, "").replace(/[*#_~`]/g, "");
             const utter = new SpeechSynthesisUtterance(limpio);
             
-            // Búsqueda de voz Neural/Natural de alta calidad en español
-            if (vocesDisponibles.length === 0) cargarVocesNeurales();
-            const vozNeural = vocesDisponibles.find(v => 
-                (v.lang.startsWith("es") || v.lang.includes("ES") || v.lang.includes("CL") || v.lang.includes("MX")) &&
-                (v.name.includes("Neural") || v.name.includes("Natural") || v.name.includes("Google") || v.name.includes("Paulina") || v.name.includes("Sabina") || v.name.includes("Elena") || v.name.includes("Monica"))
-            ) || vocesDisponibles.find(v => v.lang.startsWith("es"));
-
-            if (vozNeural) {
-                utter.voice = vozNeural;
-            }
+            const voz = obtenerVozNeural();
+            if (voz) utter.voice = voz;
 
             utter.lang = "es-CL";
-            utter.rate = 1.0;  // Cadencia continua y natural sin pausas robóticas
-            utter.pitch = 1.02; // Tono cálido humano
+            utter.rate = 0.95; // Ritmo pausado y cálido
+            utter.pitch = 1.0;
             window.speechSynthesis.speak(utter);
         }
 
@@ -580,7 +591,6 @@
             input.value = "";
             chatMessages.scrollTop = chatMessages.scrollHeight;
 
-            // Indicador sutil de tres puntos (humano)
             const typingBubble = document.createElement("div");
             typingBubble.className = "typing-indicator";
             typingBubble.id = "sol-typing";
@@ -608,3 +618,10 @@
 
                 hablarRespuesta(respuesta);
             } catch (err) {
+                const typing = document.getElementById("sol-typing");
+                if (typing) typing.remove();
+            }
+        }
+    </script>
+</body>
+</html>
