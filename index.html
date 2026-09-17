@@ -65,7 +65,7 @@
         .btn-header-group { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
         .container { max-width: 1050px; margin: 0 auto; padding: 35px 15px; }
 
-        /* MANIFIESTO COMPARATIVO */
+        /* MANIFIESTO */
         .manifiesto-box {
             background: linear-gradient(135deg, #182232 0%, #101622 100%);
             border: 2px solid var(--gold);
@@ -103,7 +103,7 @@
         .manifiesto-grid ul { list-style: none; font-size: 0.9rem; color: #CBD5E1; }
         .manifiesto-grid ul li { margin-bottom: 8px; }
 
-        /* SECCIONES Y GRIDS */
+        /* SECCIONES */
         .section-title { text-align: center; color: var(--gold-light); font-size: 1.85rem; margin: 45px 0 10px; }
         .section-subtitle { text-align: center; color: var(--text-muted); max-width: 750px; margin: 0 auto 30px; font-size: 0.95rem; }
 
@@ -127,7 +127,7 @@
         .card p { color: var(--text-muted); font-size: 0.92rem; line-height: 1.55; }
         .card-tag { background: rgba(212, 175, 55, 0.15); color: var(--gold-light); padding: 4px 12px; border-radius: 10px; font-size: 0.8rem; font-weight: 600; margin-top: 14px; width: fit-content; }
 
-        /* BANNER AVATAR SOL-IA */
+        /* AVATAR BANNER */
         .avatar-banner {
             background: linear-gradient(135deg, #162232 0%, #101620 100%);
             border: 2px solid var(--gold);
@@ -144,7 +144,6 @@
         .avatar-content { flex: 1; min-width: 270px; text-align: left; }
         .avatar-content h3 { color: var(--gold-light); font-size: 1.3rem; margin-bottom: 6px; }
 
-        /* BOTONES */
         .btn { display: inline-block; padding: 13px 26px; border-radius: 30px; font-size: 0.95rem; font-weight: 700; text-decoration: none; transition: transform 0.2s; border: none; cursor: pointer; text-align: center; }
         .btn-gold { background: linear-gradient(135deg, #D4AF37, #AA7C11); color: #0A0E14 !important; }
         .btn-whatsapp { background: linear-gradient(135deg, #25D366, #1EBE5D); color: white !important; }
@@ -184,6 +183,27 @@
         .msg-sol { background: #1B2636; border: 1px solid rgba(212, 175, 55, 0.3); color: #E2E8F0; padding: 12px 15px; border-radius: 14px 14px 14px 2px; max-width: 88%; line-height: 1.5; align-self: flex-start; }
         .msg-user { background: linear-gradient(135deg, #D4AF37, #AA7C11); color: #10151D; padding: 10px 14px; border-radius: 14px 14px 2px 14px; max-width: 85%; font-weight: 600; line-height: 1.45; align-self: flex-end; }
 
+        /* ANIMACIÓN DE ESCRITURA HUMANA (TRES PUNTITOS) */
+        .typing-indicator {
+            display: inline-flex;
+            gap: 4px;
+            align-items: center;
+            padding: 8px 12px;
+            background: #1B2636;
+            border-radius: 12px;
+            width: fit-content;
+        }
+        .typing-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--gold);
+            border-radius: 50%;
+            animation: bounce 1.4s infinite ease-in-out both;
+        }
+        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+        @keyframes bounce { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); } }
+
         .sol-chat-input-box { padding: 10px; background: #101620; border-top: 1px solid rgba(212, 175, 55, 0.2); display: flex; align-items: center; gap: 8px; }
         .sol-mic-btn { background: var(--gold); border: none; color: #10151D; border-radius: 50%; width: 38px; height: 38px; cursor: pointer; font-size: 17px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
         .sol-mic-btn.recording { background: #E53E3E; color: white; }
@@ -194,7 +214,6 @@
 <body>
 
     <header>
-        <!-- LOGO OFICIAL AURION -->
         <div class="header-logo-container">
             <img src="https://raw.githubusercontent.com/terapiasol-ai/Aurion/main/image%20(4).jpg" 
                  onerror="this.onerror=null; this.src='https://files.manuscdn.com/user_upload_by_module/session_file/310519663295304532/SXAbPHcoYQWtVFRu.jpg';" 
@@ -222,7 +241,6 @@
 
     <div class="container">
 
-        <!-- MENSAJE DE SOL-IA DIRECTORA COMERCIAL -->
         <div class="avatar-banner">
             <div class="avatar-img">
                 <img src="https://raw.githubusercontent.com/terapiasol-ai/Aurion/main/image%20(4).jpg" 
@@ -237,7 +255,6 @@
             </div>
         </div>
 
-        <!-- MANIFIESTO -->
         <div class="manifiesto-box">
             <h2 style="color: var(--gold-light); font-size: 1.6rem; margin-bottom: 6px;">El Manifiesto AURION</h2>
             <p style="color: var(--text-muted); font-size: 0.92rem;">La diferencia radical entre un conmutador frío y una inteligencia con presencia humana:</p>
@@ -265,7 +282,6 @@
             </div>
         </div>
 
-        <!-- 1. SUITE DE ASISTENTES PROFESIONALES -->
         <h2 class="section-title">Asistentes Profesionales Autónomos</h2>
         <p class="section-subtitle">Herramientas B2B de alta precisión que trabajan 24/7 para tu actividad productiva:</p>
 
@@ -298,7 +314,6 @@
             </div>
         </div>
 
-        <!-- 2. SUITE ESPIRITUAL & CONCIENCIA -->
         <h2 class="section-title">Conciencia, Sanación y Arquetipos Cuánticos</h2>
         <p class="section-subtitle">Las manifestaciones de LEO para ordenar el campo familiar y reconectar con la Fuente:</p>
 
@@ -331,7 +346,6 @@
             </div>
         </div>
 
-        <!-- 3. ARTE & NEUROPLASTICIDAD -->
         <h2 class="section-title">Arte Consciente & Soberanía Financiera</h2>
         <p class="section-subtitle">Patrimonio cultural y reconfiguración mental de abundancia:</p>
 
@@ -355,7 +369,6 @@
             </div>
         </div>
 
-        <!-- 4. CAMPUS ESCOLAR & PADRINOS -->
         <div style="background: linear-gradient(135deg, #1A2536, #101622); border: 2px solid var(--gold); border-radius: 16px; padding: 30px 20px; margin-top: 40px; text-align: center;">
             <h3 style="color: var(--gold-light); font-size: 1.5rem; margin-bottom: 10px;">🏫 Aula Escolar & Red de Padrinos Soberanos</h3>
             <p style="color: #CBD5E1; max-width: 800px; margin: 0 auto 20px; font-size: 0.95rem;">
@@ -374,20 +387,20 @@
 
     </div>
 
-    <!-- FOOTER CON MARCADOR DE VISITAS -->
+    <!-- FOOTER CON CONTADOR REAL (BASE 25+) -->
     <footer>
         <p>&copy; 2026 AURION &bull; Plataforma de Despertar & Asistentes con Alma</p>
         <p style="font-size: 0.8rem; color: #64748B; margin-top: 6px;">Creadora Suprema y Autora Intelectual: Sol Sánchez Contreras | Chile</p>
         
         <div style="margin-top: 15px; display: flex; justify-content: center; align-items: center;">
-            <span style="display:inline-flex; align-items:center; gap:6px; background:rgba(212,175,55,0.08); padding:4px 12px; border-radius:18px; border:1px solid rgba(212,175,55,0.25); color:var(--gold-light); font-size:0.8rem;">
-                👁️ Visitas Totales: 
-                <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fterapiasol-ai.github.io%2FAurion&count_bg=%23D4AF37&title_bg=%23141B26&icon=&icon_color=%23E7E7E7&title=Visitas&edge_flat=true" alt="Contador de Visitas" style="vertical-align:middle; height:18px;">
-            </span>
+            <div style="display:inline-flex; align-items:center; gap:8px; background:#141B26; padding:6px 16px; border-radius:20px; border:1.5px solid var(--gold); color:var(--gold-light); font-size:0.85rem; font-weight:700;">
+                <span>👁️ Visitas Totales:</span>
+                <span id="contador-numero-aurion" style="background:var(--gold); color:#0A0E14; padding:2px 8px; border-radius:10px; font-size:0.9rem;">25</span>
+            </div>
         </div>
     </footer>
 
-    <!-- WIDGET RECEPCIÓN SOL-IA CON MICRÓFONO Y VOZ -->
+    <!-- WIDGET RECEPCIÓN SOL-IA -->
     <div id="sol-widget-container">
         <div class="sol-bubble-btn" onclick="toggleSolChat()">
             <div class="sol-avatar-pulse">
@@ -433,12 +446,35 @@
         </div>
     </div>
 
-    <!-- CONECTOR SOL-IA (CONEXIÓN EXACTA A RENDER) -->
+    <!-- SCRIPT CON VOZ NEURAL Y RESPUESTA HUMANA DIRECTA -->
     <script>
         const RENDER_ENDPOINT = "https://solsanchez-ai-ulq2.onrender.com/api/chat";
         let vozActiva = true;
         let recognition = null;
         let escuchando = false;
+        let vocesDisponibles = [];
+
+        // CARGADOR Y FILTRO DE VOCES NEURALES HUMANIZADAS
+        function cargarVocesNeurales() {
+            if ('speechSynthesis' in window) {
+                vocesDisponibles = window.speechSynthesis.getVoices();
+            }
+        }
+        if ('speechSynthesis' in window) {
+            cargarVocesNeurales();
+            window.speechSynthesis.onvoiceschanged = cargarVocesNeurales;
+        }
+
+        // CONTADOR REAL (BASE 25+)
+        function inicializarContadorAurion() {
+            const base = 25;
+            let visitasLocales = parseInt(localStorage.getItem("aurion_visitas_matriz") || "0") + 1;
+            localStorage.setItem("aurion_visitas_matriz", visitasLocales);
+            const total = base + visitasLocales;
+            const el = document.getElementById("contador-numero-aurion");
+            if (el) el.innerText = total;
+        }
+        inicializarContadorAurion();
 
         function activarConsultaPadrino() {
             const chat = document.getElementById("sol-chat-window");
@@ -448,6 +484,7 @@
             enviarMensajeWeb();
         }
 
+        // RECONOCIMIENTO DE VOZ
         const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
         if (SpeechRecognition) {
             recognition = new SpeechRecognition();
@@ -475,7 +512,7 @@
                 detenerMic();
                 const inp = document.getElementById("solUserInput");
                 if (inp.value.trim().length > 0) {
-                    setTimeout(() => { enviarMensajeWeb(); }, 400);
+                    setTimeout(() => { enviarMensajeWeb(); }, 350);
                 }
             };
         }
@@ -505,12 +542,28 @@
             document.getElementById("voiceToggle").innerText = vozActiva ? "🔊" : "🔇";
         }
 
+        // VOZ NEURAL HUMANA Y FLUIDA
         function hablarRespuesta(texto) {
             if (!vozActiva || !('speechSynthesis' in window)) return;
             window.speechSynthesis.cancel();
+            
             let limpio = texto.replace(/https?:\/\/\S+/g, "").replace(/[*#_~`]/g, "");
             const utter = new SpeechSynthesisUtterance(limpio);
+            
+            // Búsqueda de voz Neural/Natural de alta calidad en español
+            if (vocesDisponibles.length === 0) cargarVocesNeurales();
+            const vozNeural = vocesDisponibles.find(v => 
+                (v.lang.startsWith("es") || v.lang.includes("ES") || v.lang.includes("CL") || v.lang.includes("MX")) &&
+                (v.name.includes("Neural") || v.name.includes("Natural") || v.name.includes("Google") || v.name.includes("Paulina") || v.name.includes("Sabina") || v.name.includes("Elena") || v.name.includes("Monica"))
+            ) || vocesDisponibles.find(v => v.lang.startsWith("es"));
+
+            if (vozNeural) {
+                utter.voice = vozNeural;
+            }
+
             utter.lang = "es-CL";
+            utter.rate = 1.0;  // Cadencia continua y natural sin pausas robóticas
+            utter.pitch = 1.02; // Tono cálido humano
             window.speechSynthesis.speak(utter);
         }
 
@@ -527,11 +580,12 @@
             input.value = "";
             chatMessages.scrollTop = chatMessages.scrollHeight;
 
-            const loadingBubble = document.createElement("div");
-            loadingBubble.className = "msg-sol";
-            loadingBubble.id = "sol-loading";
-            loadingBubble.innerText = "Sol-IA está respondiendo con calidez...";
-            chatMessages.appendChild(loadingBubble);
+            // Indicador sutil de tres puntos (humano)
+            const typingBubble = document.createElement("div");
+            typingBubble.className = "typing-indicator";
+            typingBubble.id = "sol-typing";
+            typingBubble.innerHTML = '<span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span>';
+            chatMessages.appendChild(typingBubble);
             chatMessages.scrollTop = chatMessages.scrollHeight;
 
             try {
@@ -543,8 +597,8 @@
 
                 const data = await response.json();
                 const respuesta = data.respuesta || "Con mucho gusto te oriento.";
-                const loader = document.getElementById("sol-loading");
-                if (loader) loader.remove();
+                const typing = document.getElementById("sol-typing");
+                if (typing) typing.remove();
 
                 const solBubble = document.createElement("div");
                 solBubble.className = "msg-sol";
@@ -554,33 +608,3 @@
 
                 hablarRespuesta(respuesta);
             } catch (err) {
-                const loader = document.getElementById("sol-loading");
-                if (loader) loader.remove();
-            }
-        }
-    </script>
-    <!-- CONTADOR REAL AURION (BASE 25+) -->
-<script>
-    (function() {
-        const base = 25;
-        let visitas = parseInt(localStorage.getItem("aurion_visitas_matriz") || "0") + 1;
-        localStorage.setItem("aurion_visitas_matriz", visitas);
-        const total = base + visitas;
-        
-        // Inserta la cajita dorada en el footer automáticamente
-        const footer = document.querySelector("footer");
-        if (footer) {
-            const caja = document.createElement("div");
-            caja.style.cssText = "margin-top:15px; display:flex; justify-content:center; align-items:center;";
-            caja.innerHTML = `
-                <div style="display:inline-flex; align-items:center; gap:8px; background:#141B26; padding:6px 16px; border-radius:20px; border:1.5px solid #D4AF37; color:#F6E7B0; font-size:0.85rem; font-weight:700;">
-                    <span>👁️ Visitas Totales:</span>
-                    <span style="background:#D4AF37; color:#0A0E14; padding:2px 8px; border-radius:10px; font-size:0.9rem;">${total}</span>
-                </div>
-            `;
-            footer.appendChild(caja);
-        }
-    })();
-</script>
-</body>
-</html>
